@@ -35,26 +35,42 @@
     <!-- navbar -->
     <nav class="navbar"></nav>
 
-    <main-section>
-        <div class="login-container">
-            <form class="login-form">
-                <h2>Login</h2>
-                <div class="form-group">
-                    <label for="username">Username:</label>
-                    <input type="text" id="username" name="username" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-                <div class="form-group">
-                    <button type="submit">Login</button>
-                </div>
-                <div class="form-group">
-                    <p>Not a user yet? <a href="signup.html">Signup</a></p>
-                </div>
-                <div class="form-message" id="formMessage"></div>
-            </form>
+    <main-section class="box-form">
+        <div class="left">
+            <div class="overlay">
+                <h1>Hello World.</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Curabitur et est sed felis aliquet sollicitudin</p>
+                <span>
+                    <p>login with social media</p>
+                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i> Login with Twitter</a>
+                </span>
+            </div>
+        </div>
+
+        <div class="right">
+            <div class="login-container">
+                <form class="login-form">
+                    <h2 class="header">Login</h2>
+                    <div class="form-group inputs">
+                        <label class="label1" for="username">Username:</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div class="form-group inputs">
+                        <label class="label2" for="password">Password:</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit">Login</button>
+                    </div>
+                    <div class="form-group">
+                        <p>Not a user yet? <a href="signup.html">Signup</a></p>
+                    </div>
+                    <p class="forget">forget password?</p>
+                    <div class="form-message" id="formMessage"></div>
+                </form>
+            </div>
         </div>
     </main-section>
 
