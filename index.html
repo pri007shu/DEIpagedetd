@@ -7,6 +7,7 @@
     <title>DEI ENGINEERING</title>
     <link rel="icon" href="img/about12.png" type="image/x-icon">
     <link rel="stylesheet" href="css/home.css">
+    
 </head>
 
 <body>
@@ -109,12 +110,12 @@
                     <span class="product-short-des">Welcome to our vibrant academic community! Expert faculty, committed staff, and collaborative learning create an inclusive atmosphere. Join us in shaping future leaders for a brighter tomorrow, where passion meets purpose and excellence is our commitment.</span>
                 </div>
             </div>
-            <div class="product-card" onclick="window.open('https://www.dei.ac.in/dei/files/NIRF2017/Consolidated%20Proofs%20of%20Patents.pdf', '_blank')">
+            <div class="product-card" onclick="openLocalPDF()">
                 <div class="product-image">
                     <img src="img/card3.png" class="product-thumb" alt="">
                 </div>
                 <div class="product-info">
-                    <a href="https://www.dei.ac.in/dei/files/NIRF2017/Consolidated%20Proofs%20of%20Patents.pdf" target="_blank">
+                    <a href="path/to/your/local/pdf/file.pdf" target="_blank">
                         <h2 class="product-brand">Publications & Patents</h2>
                         <span class="product-short-des">Welcome to our Innovation Hub! Explore faculty publications and
                             patents, showcasing cutting-edge research and intellectual growth. Join our vibrant community,
@@ -122,6 +123,7 @@
                     </a>
                 </div>
             </div>
+            
         </div>
     </section>
 
@@ -8036,6 +8038,12 @@
     <script src="js/nav.js"></script>
     <script src="js/home.js"></script>
     <script src="js/footer.js"></script>
+
+    <script>
+        function openLocalPDF() {
+            window.open('path/to/your/local/pdf/file.pdf', '_blank');
+        }
+    </script>
 </body>
 
 </html>
