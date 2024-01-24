@@ -11,6 +11,25 @@
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/footer.css">
+
+    <style>
+        #datetime {
+            font-size: 2em;
+            color: #333;
+        }
+    </style>
+    <script>
+        function updateDateTime() {
+            var now = new Date();
+            var date = now.toDateString();
+            var time = now.toLocaleTimeString();
+            var seconds = now.getSeconds();
+
+            document.getElementById('datetime').innerHTML = date + ' ' + time;
+        }
+
+        setInterval(updateDateTime, 1000); // Update every 1000 milliseconds (1 second)
+    </script>
 </head>
 
 <body>
@@ -18,7 +37,10 @@
     <!-- navbar -->
     <nav class="navbar"></nav>
 
-    <p class="name">Hey! <span>Priyanshu</span></p>
+    <div class="header-name">
+        <p class="name">Hey! <span>Priyanshu</span></p>
+        <div id="datetime"></div>
+    </div>
 
     <div class="main-container">
         <div class="navcontainer">
