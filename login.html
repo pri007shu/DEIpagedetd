@@ -7,22 +7,26 @@
     <title>DEI ENGINEERING - Login</title>
     <link rel="icon" href="img/about12.png" type="image/x-icon">
 
-    <!-- Firebase Configuration -->
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <!-- Add these scripts for Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-firestore.js"></script>
 
-    <script>
-        var firebaseConfig = {
-            apiKey: "AIzaSyCu3Jlxe8Ao3SphePEMG6qXE1f1_YYjb7o",
-            authDomain: "deipage-detd.firebaseapp.com",
-            projectId: "deipage-detd",
-            storageBucket: "deipage-detd.appspot.com",
-            messagingSenderId: "830390951653",
-            appId: "1:830390951653:web:92ad43a7a52c844c18be0c",
-            measurementId: "G-QFX4F832FE"
-        };
-        firebase.initializeApp(firebaseConfig);
-    </script>
+<!-- Your Firebase configuration -->
+<script>
+  var firebaseConfig = {
+    apiKey: "AIzaSyCu3Jlxe8Ao3SphePEMG6qXE1f1_YYjb7o",
+  authDomain: "deipage-detd.firebaseapp.com",
+  projectId: "deipage-detd",
+  storageBucket: "deipage-detd.appspot.com",
+  messagingSenderId: "830390951653",
+  appId: "1:830390951653:web:92ad43a7a52c844c18be0c",
+  measurementId: "G-QFX4F832FE"
+  };
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/home.css">
@@ -38,6 +42,14 @@
     <main-section class="box-form">
         <div class="left">
             <div class="overlay">
+                <h1>Hello World.</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Curabitur et est sed felis aliquet sollicitudin</p>
+                <span>
+                    <p>login with social media</p>
+                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i> Login with Twitter</a>
+                </span>
             </div>
         </div>
 
