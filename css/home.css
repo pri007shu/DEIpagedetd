@@ -70,6 +70,10 @@ width: 40vw;
     display: none;
 }
 
+.product-info a{
+    color: #000;
+}
+
 .product-card {
     flex: 0 0 auto;
     width: 20vw;
