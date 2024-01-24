@@ -24,7 +24,7 @@ const createNav = () => {
       <li class="link-item"><a href="https://www.dei.ac.in/dei/" class="link" target="_blank">DEI Home</a></li>
       <li class="link-item"><a href="https://www.dei.ac.in/dei/engineering/" class="link" target="_blank">FoE Main</a></li>
       <li class="link-item"><a href="contact.html" class="link">Contact</a></li>
-      <li class="link-item"><a href="about.html" class="link">My Dashboard</a></li>
+      <li class="link-item"><a href="login.html" class="link">My Dashboard</a></li>
       </div>
     </ul>
   </nav>
