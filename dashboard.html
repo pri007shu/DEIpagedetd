@@ -18,7 +18,23 @@
             color: #333;
         }
     </style>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-firestore.js"></script>
     <script>
+        // Replace with your Firebase project configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCu3Jlxe8Ao3SphePEMG6qXE1f1_YYjb7o",
+            authDomain: "deipage-detd.firebaseapp.com",
+            projectId: "deipage-detd",
+            storageBucket: "deipage-detd.appspot.com",
+            messagingSenderId: "830390951653",
+            appId: "1:830390951653:web:92ad43a7a52c844c18be0c",
+            measurementId: "G-QFX4F832FE"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
         function updateDateTime() {
             var now = new Date();
             var date = now.toDateString();
@@ -28,7 +44,37 @@
             document.getElementById('datetime').innerHTML = date + ' ' + time;
         }
 
+        function updateUserName() {
+            // Check if there is a current user
+            const user = firebase.auth().currentUser;
+            if (user) {
+                // Fetch user data from Firestore and update the name
+                const userId = user.uid;
+
+                firebase.firestore().collection('users').doc(userId).get()
+                    .then((doc) => {
+                        if (doc.exists) {
+                            const userName = doc.data().name;
+                            document.getElementById('username').innerText = "Hey! " + userName;
+                        } else {
+                            console.error('User data not found in Firestore');
+                        }
+                    })
+                    .catch((error) => {
+                        console.error('Error fetching user data from Firestore:', error);
+                    });
+            } else {
+                console.error('No authenticated user');
+            }
+        }
+
         setInterval(updateDateTime, 1000); // Update every 1000 milliseconds (1 second)
+        // Add a listener for authentication state change
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                updateUserName(); // Update user name on page load and on authentication state change
+            }
+        });
     </script>
 </head>
 
@@ -38,7 +84,7 @@
     <nav class="navbar"></nav>
 
     <div class="header-name">
-        <p class="name">Hey! <span>Priyanshu</span></p>
+        <p id="username" class="name">Hey! <span>Priyanshu</span></p>
         <div id="datetime"></div>
     </div>
 

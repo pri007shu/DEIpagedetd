@@ -12,29 +12,10 @@
     <link rel="stylesheet" href="css/contact.css">
     <link rel="stylesheet" href="css/login.css">
     <!-- Add these lines to include Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js" onload="firebaseLoaded()"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-firestore.js"></script>
 
-<script>
-        // Replace with your Firebase project configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyCu3Jlxe8Ao3SphePEMG6qXE1f1_YYjb7o",
-            authDomain: "deipage-detd.firebaseapp.com",
-            projectId: "deipage-detd",
-            storageBucket: "deipage-detd.appspot.com",
-            messagingSenderId: "830390951653",
-            appId: "1:830390951653:web:92ad43a7a52c844c18be0c",
-            measurementId: "G-QFX4F832FE"
-        };
-
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-
-        function firebaseLoaded() {
-            console.log("Firebase SDK loaded");
-        }
-    </script>
 </head>
 
 <body>
@@ -44,14 +25,12 @@
 
     <main-section class="box-form">
         <div class="left">
-            <div class="overlay">
-                
-            </div>
+            <div class="overlay"></div>
         </div>
 
         <div class="right">
             <div class="login-container">
-                <form class="login-form">
+                <form id="signupForm" class="login-form">
                     <h2 class="header">Student-Sign UP</h2>
                     <div class="form-group inputs">
                         <label class="label1" for="name">Name:</label>
@@ -90,7 +69,22 @@
 
     <script src="js/nav.js"></script>
     <script src="js/footer.js"></script>
+
     <script>
+        // Replace with your Firebase project configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCu3Jlxe8Ao3SphePEMG6qXE1f1_YYjb7o",
+            authDomain: "deipage-detd.firebaseapp.com",
+            projectId: "deipage-detd",
+            storageBucket: "deipage-detd.appspot.com",
+            messagingSenderId: "830390951653",
+            appId: "1:830390951653:web:92ad43a7a52c844c18be0c",
+            measurementId: "G-QFX4F832FE"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
         const auth = firebase.auth();
         const firestore = firebase.firestore();
 
@@ -146,7 +140,7 @@
             signUp(); // Call the signUp function
         });
     </script>
-    
+
 </body>
 
 </html>
