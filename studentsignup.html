@@ -111,7 +111,7 @@
                     console.log('User signed up:', user);
 
                     // Save user data in Firestore
-                    firestore.collection('users').doc(user.uid).set({
+                    firestore.collection('students').doc(user.uid).set({
                         name: name,
                         rollNo: rollNo,
                         email: email,
