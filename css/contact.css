@@ -1,7 +1,7 @@
 .contact-hero-section {
     width: 100%;
     height: calc(15vh - 2px);
-    background: url('../img/Banner.gif') center/cover;
+    background: url('../img/carbongrey.jpeg') center/cover;
     display: flex;
     justify-content: center;
     text-align: center;
@@ -16,7 +16,7 @@
 .contact-container {
     width: 100%;
     height: 45vw;
-    background: url('../img/contact-bg.png') center/cover;
+    background: url('../img/image\ 2.png') center/cover;
     display: flex;
     justify-content: space-around;
     align-items: center;
