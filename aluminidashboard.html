@@ -51,7 +51,7 @@
                 // Fetch user data from Firestore and update the name
                 const userId = user.uid;
 
-                firebase.firestore().collection('students').doc(userId).get()
+                firebase.firestore().collection('alumini').doc(userId).get()
                     .then((doc) => {
                         if (doc.exists) {
                             const userName = doc.data().name;
