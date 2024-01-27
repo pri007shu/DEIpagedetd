@@ -140,3 +140,43 @@ input[type=checkbox] {
         font-size: 3vw;
     }
 }
+
+.nav-bottom {
+    background: #b5b4b4;
+    padding: 8px;
+}
+
+* {
+    box-sizing: border-box;
+  }
+
+  form.example input[type=text] {
+    margin-left: 1170px;
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    background: #f1f1f1;
+  }
+  
+  /* Style the submit button */
+  form.example button {
+    width: 5%;
+    padding: 10px;
+    background: #2196F3;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none; /* Prevent double borders */
+    cursor: pointer;
+  }
+  
+  form.example button:hover {
+    background: #0b7dda;
+  }
+  
+  /* Clear floats */
+  form.example::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
