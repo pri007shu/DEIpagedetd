@@ -55,13 +55,15 @@ li {
 .logo-name {
     color: #111111;
     font-size: 1.6vw;
+    width: 55vw;
 }
 
 /* NAVBAR MENU */
 .menu {
     display: flex;
-    gap: 1em;
-    font-size: 1.2vw;
+    gap: 1.115em;
+    font-size: 1vw;
+    align-items: center;
 }
 
 .menu li:hover {
@@ -71,7 +73,13 @@ li {
 }
 
 .menu li {
-    padding: 5px 14px;
+    padding: 5px 1.2px;
+    text-align: center;
+    /* width: 6vw; */
+}
+
+.menu li a{
+    color: rgb(59, 59, 143);
 }
 
 /* RESPONSIVE NAVBAR MENU STARTS */
