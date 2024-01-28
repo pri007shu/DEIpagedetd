@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, 
+				initial-scale=1.0">
+    <title>GeeksForGeeks</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/glform.css">
+
+    <style>
+        #datetime {
+            font-size: 2em;
+            color: #333;
+        }
+    </style>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-firestore.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script>
+        // Replace with your Firebase project configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCu3Jlxe8Ao3SphePEMG6qXE1f1_YYjb7o",
+            authDomain: "deipage-detd.firebaseapp.com",
+            projectId: "deipage-detd",
+            storageBucket: "deipage-detd.appspot.com",
+            messagingSenderId: "830390951653",
+            appId: "1:830390951653:web:92ad43a7a52c844c18be0c",
+            measurementId: "G-QFX4F832FE"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        function updateDateTime() {
+            var now = new Date();
+            var date = now.toDateString();
+            var time = now.toLocaleTimeString();
+            var seconds = now.getSeconds();
+
+            document.getElementById('datetime').innerHTML = date + ' ' + time;
+        }
+
+        function updateUserName() {
+            // Check if there is a current user
+            const user = firebase.auth().currentUser;
+            if (user) {
+                // Fetch user data from Firestore and update the name
+                const userId = user.uid;
+
+                firebase.firestore().collection('faculty').doc(userId).get()
+                    .then((doc) => {
+                        if (doc.exists) {
+                            const userName = doc.data().name;
+                            document.getElementById('username').innerText = "Hey! " + userName;
+                        } else {
+                            console.error('User data not found in Firestore');
+                        }
+                    })
+                    .catch((error) => {
+                        console.error('Error fetching user data from Firestore:', error);
+                    });
+            } else {
+                console.error('No authenticated user');
+            }
+        }
+
+        setInterval(updateDateTime, 1000); // Update every 1000 milliseconds (1 second)
+        // Add a listener for authentication state change
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                updateUserName(); // Update user name on page load and on authentication state change
+            }
+        });
+
+       
+    </script>
+</head>
+
+<body>
+
+    <!-- navbar -->
+    <nav class="navbar"></nav>
+
+    <!-- nav-bottom -->
+    <div class="nav-bottom">
+        <form class="example" action="action_page.php">
+            <input type="text" placeholder="Search.." name="search">
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+
+    <div class="header-name">
+        <div id="datetime"></div>
+        <p id="username" class="name">Hey! <span>Priyanshu</span></p>
+    </div>
+
+    <div class="main-container">
+        <div class="navcontainer">
+            <nav class="nav">
+                <div class="nav-upper-options">
+                    <div id="dashboard" class="nav-option option1">
+                        <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210182148/Untitled-design-(29).png"
+                            class="nav-img" alt="dashboard">
+                        <h3> Dashboard</h3>
+                    </div>
+
+                    <div id="guestlecturespeaker" class="option2 nav-option">
+                        <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210183322/9.png"
+                            class="nav-img" alt="articles">
+                        <h3>Guest Lecture/ Speaker</h3>
+                    </div>
+
+                    <div id="projectsanctioned" class="nav-option option3">
+                        <img src="https://cdn-icons-png.flaticon.com/512/662/662608.png"
+                            class="nav-img" alt="projectsanctioned">
+                        <h3>Project Sanctioned</h3>
+                    </div>
+
+                    <div id="journals" class="nav-option option4">
+                        <img src="https://png.pngtree.com/png-vector/20230413/ourmid/pngtree-journalism-line-icon-vector-png-image_6704928.png"
+                            class="nav-img" alt="journals">
+                        <h3>Journals</h3>
+                    </div>
+
+                    <div id="bookspublished" class="nav-option option5">
+                        <img src="https://w7.pngwing.com/pngs/425/805/png-transparent-computer-icons-book-book-cover-angle-recycling-logo-thumbnail.png"
+                            class="nav-img" alt="blog">
+                        <h3>Books Published</h3>
+                    </div>
+
+                    <div id="conferences" class="nav-option option6">
+                        <img src="https://w7.pngwing.com/pngs/993/585/png-transparent-human-signage-illustration-computer-icons-meeting-board-of-directors-reunion-logo-business-conference-centre.png"
+                            class="nav-img" alt="conferences">
+                        <h3>Conferences</h3>
+                    </div>
+
+                    <div id="workshopsorganised" class="nav-option option6">
+                        <img src="https://w7.pngwing.com/pngs/612/614/png-transparent-computer-icons-workshop-organization-business-others-angle-text-presentation.png"
+                            class="nav-img" alt="workshopsorganised">
+                        <h3>Workshops Organised</h3>
+                    </div>
+
+                    <div id="foreignvisits" class="nav-option option6">
+                        <img src="https://w7.pngwing.com/pngs/921/321/png-transparent-flight-air-travel-travel-agent-computer-icons-travel-logo-monochrome-airplane-thumbnail.png"
+                            class="nav-img" alt="foreignvisits">
+                        <h3>Foreign Visits</h3>
+                    </div>
+
+                    
+                    <div id="otherachievements" class="nav-option option6">
+                        <img src="https://w7.pngwing.com/pngs/897/3/png-transparent-computer-icons-achievement-trophy-black-prize-achievement-thumbnail.png"
+                            class="nav-img" alt="otherachievements">
+                        <h3>Other Achievements</h3>
+                    </div>
+
+                    <div class="nav-option logout">
+                        <img src="https://toppng.com/uploads/preview/logout-11551049168o9cg0mxxib.png"
+                            class="nav-img" alt="logout">
+                        <h3>Logout</h3>
+                    </div>
+
+                </div>
+            </nav>
+        </div>
+        <div class="main">
+
+            <div class="searchbar2">
+                <input type="text" name="" id="" placeholder="Search">
+                <div class="searchbtn">
+                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210180758/Untitled-design-(28).png"
+                        class="icn srchicn" alt="search-button">
+                </div>
+            </div>
+
+            <div class="report-container0">
+                <div class="report-header">
+                    <h1 class="recent-Articles">Recent Articles</h1>
+                    <button class="view">View All</button>
+                </div>
+
+                <!--    MAKE A PROFILE SECTION HERE -->
+
+
+            </div>
+<!-- Guest lecture -->
+            <div class="report-container1">
+                <div class="report-header">
+                    <h1 class="recent-Articles">Recent Articles1</h1>
+                    <button class="view">View All</button>
+                </div>
+
+                <div class="form-container">
+                    <form id="myForm1">
+                      <div class="form-group">
+                        <label for="name">Venue:</label>
+                        <input type="text" id="venue" name="venue" required>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="email">Date</label>
+                        <input type="date" id="date" name="date" required>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="age">Organisation:</label>
+                        <input type="text" id="organisation" name="organisation" required>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="message">Theme:</label>
+                        <textarea id="theme" name="theme" rows="4" required></textarea>
+                      </div>
+                      
+                      <button type="submit" class="submit-btn">Submit</button>
+                    </form>
+                  </div>
+                </div>
+
+                <!-- Projects -->
+            <div class="report-container2">
+                <div class="report-header">
+                    <h1 class="recent-Articles">Recent Articles2</h1>
+                    <button class="view">View All</button>
+                </div>
+
+                <div class="form-container">
+                    <form id="myForm2">
+                      <div class="form-group">
+                        <label for="name">Sanctioning Body:</label>
+                        <input type="text" id="sanctioningbody" name="venue" required>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="email">Title</label>
+                        <input type="text" id="title" name="date" required>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="age">Fund:</label>
+                        <input type="text" id="fund" name="organisation" required>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="email">Start-Date</label>
+                        <input type="date" id="sdate" name="date" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="email">End-Date</label>
+                        <input type="date" id="edate" name="date" required>
+                      </div>
+                      
+                      <button type="submit" class="submit-btn">Submit</button>
+                    </form>
+                  </div>
+            </div>
+
+            <!-- journal -->
+            <div class="report-container3">
+                <div class="report-header">
+                    <h1 class="recent-Articles">Recent Articles3</h1>
+                    <button class="view">View All</button>
+                </div>
+
+                <div class="form-container">
+                    <form id="myForm3">
+                      <div class="form-group">
+                        <label for="name">Sanctioning Body:</label>
+                        <input type="text" id="sanctioningbody" name="venue" required>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="email">Title</label>
+                        <input type="text" id="title" name="date" required>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="age">Fund:</label>
+                        <input type="text" id="fund" name="organisation" required>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="email">Start-Date</label>
+                        <input type="date" id="sdate" name="date" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="email">End-Date</label>
+                        <input type="date" id="edate" name="date" required>
+                      </div>
+                      
+                      <button type="submit" class="submit-btn">Submit</button>
+                    </form>
+                  </div>
+
+                
+            </div>
+
+            <!-- Books published -->
+            <div class="report-container4">
+                <div class="report-header">
+                    <h1 class="recent-Articles">Recent Articles4</h1>
+                    <button class="view">View All</button>
+                </div>
+
+                <div class="form-container">
+                    <form id="myForm4">
+                      <div class="form-group">
+                        <label for="name">Sanctioning Body:</label>
+                        <input type="text" id="sanctioningbody" name="venue" required>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="email">Title</label>
+                        <input type="text" id="title" name="date" required>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="age">Fund:</label>
+                        <input type="text" id="fund" name="organisation" required>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="email">Start-Date</label>
+                        <input type="date" id="sdate" name="date" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="email">End-Date</label>
+                        <input type="date" id="edate" name="date" required>
+                      </div>
+                      
+                      <button type="submit" class="submit-btn">Submit</button>
+                    </form>
+                  </div>
+
+                
+            </div>
+
+            <!-- Conferences -->
+            <div class="report-container5">
+                <div class="report-header">
+                    <h1 class="recent-Articles">Recent Articles5</h1>
+                    <button class="view">View All</button>
+                </div>
+
+                <div class="form-container">
+                    <form id="myForm5">
+                      <div class="form-group">
+                        <label for="name">Sanctioning Body:</label>
+                        <input type="text" id="sanctioningbody" name="venue" required>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="email">Title</label>
+                        <input type="text" id="title" name="date" required>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="age">Fund:</label>
+                        <input type="text" id="fund" name="organisation" required>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="email">Start-Date</label>
+                        <input type="date" id="sdate" name="date" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="email">End-Date</label>
+                        <input type="date" id="edate" name="date" required>
+                      </div>
+                      
+                      <button type="submit" class="submit-btn">Submit</button>
+                    </form>
+                  </div>
+
+               
+            </div>
+
+            <!-- Workshop organised -->
+            <div class="report-container6">
+                <div class="report-header">
+                    <h1 class="recent-Articles">Recent Articles6</h1>
+                    <button class="view">View All</button>
+                </div>
+
+                <div class="form-container">
+                    <form id="myForm6">
+                      <div class="form-group">
+                        <label for="name">Sanctioning Body:</label>
+                        <input type="text" id="sanctioningbody" name="venue" required>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="email">Title</label>
+                        <input type="text" id="title" name="date" required>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="age">Fund:</label>
+                        <input type="text" id="fund" name="organisation" required>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="email">Start-Date</label>
+                        <input type="date" id="sdate" name="date" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="email">End-Date</label>
+                        <input type="date" id="edate" name="date" required>
+                      </div>
+                      
+                      <button type="submit" class="submit-btn">Submit</button>
+                    </form>
+                  </div>
+
+                
+            </div>
+            <!-- Foreign visit -->
+            <div class="report-container7">
+                <div class="report-header">
+                    <h1 class="recent-Articles">Recent Articles7</h1>
+                    <button class="view">View All</button>
+                </div>
+
+                <div class="form-container">
+                    <form id="myForm7">
+                      <div class="form-group">
+                        <label for="name">Sanctioning Body:</label>
+                        <input type="text" id="sanctioningbody" name="venue" required>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="email">Title</label>
+                        <input type="text" id="title" name="date" required>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="age">Fund:</label>
+                        <input type="text" id="fund" name="organisation" required>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="email">Start-Date</label>
+                        <input type="date" id="sdate" name="date" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="email">End-Date</label>
+                        <input type="date" id="edate" name="date" required>
+                      </div>
+                      
+                      <button type="submit" class="submit-btn">Submit</button>
+                    </form>
+                  </div>
+
+            </div>
+
+            <!-- Other achievemet -->
+            <div class="report-container8">
+                <div class="report-header">
+                    <h1 class="recent-Articles">Recent Articles8</h1>
+                    <button class="view">View All</button>
+                </div>
+
+                <div class="form-container">
+                    <form id="myForm8">
+                      <div class="form-group">
+                        <label for="name">Sanctioning Body:</label>
+                        <input type="text" id="sanctioningbody" name="venue" required>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="email">Title</label>
+                        <input type="text" id="title" name="date" required>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="age">Fund:</label>
+                        <input type="text" id="fund" name="organisation" required>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label for="email">Start-Date</label>
+                        <input type="date" id="sdate" name="date" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="email">End-Date</label>
+                        <input type="date" id="edate" name="date" required>
+                      </div>
+                      
+                      <button type="submit" class="submit-btn">Submit</button>
+                    </form>
+                  </div>
+
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <script src="./index.js"></script>
+    <div class="footer-main"></div>
+
+    <script src="js/nav.js"></script>
+    <script src="js/home.js"></script>
+    <script src="js/footer.js"></script>
+    <script src="js/facultydashboard.js"></script>
+    <script src="js/FD/fdgl.js"></script>
+
+
+
+</body>
+
+</html>

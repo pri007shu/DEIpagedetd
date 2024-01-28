@@ -1,5 +1,0 @@
-// FDGL LOGIC
-
-         
-     
-         
