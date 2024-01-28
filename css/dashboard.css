@@ -157,7 +157,7 @@ body {
 .nav {
     min-height: 91vh;
     width: 250px;
-    background-color: var(--background-color2);
+    background: #cbc9c9;
     position: absolute;
     top: 0px;
     left: 00;
@@ -216,7 +216,7 @@ body {
 .option1 {
     border-left: 5px solid #010058af;
     background-color: var(--Border-color);
-    color: black;
+    color: rgb(59, 59, 143);
     cursor: pointer;
 }
 
@@ -285,6 +285,10 @@ body {
     border-radius: 30px;
     box-shadow: 3px 3px 10px rgb(188, 188, 188);
     padding: 0px 20px 20px 20px;
+}
+
+h3{
+    color: rgb(59, 59, 143);
 }
 
 .report-header {
