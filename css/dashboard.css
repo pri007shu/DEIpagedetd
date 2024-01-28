@@ -1,10 +1,10 @@
-/* Main CSS Here */
+@import 'home.css';
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+    font-family: '"Poppins", sans-serif';
 }
 
 :root {
@@ -14,7 +14,7 @@
     --background-color4: #cad7fda4;
     --primary-color: #000000;     /* Black */
     --secondary-color: #000000;   /* Black */
-    --border-color: #333333;      /* Dark Grey */
+    --border-color: #000000;      /* Dark Grey */
     --one-use-color: #333333;     /* Dark Grey */
     --two-use-color: #000000;     /* Black */
 }
