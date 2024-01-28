@@ -1,10 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Get references to each navigation item
-    const articlesNavItem = document.getElementById('articles');
-    const reportNavItem = document.getElementById('report');
-    const institutionNavItem = document.getElementById('institution');
-    const profileNavItem = document.getElementById('profile');
-    const settingsNavItem = document.getElementById('settings');
+    const guestlecturespeakerNavItem = document.getElementById('guestlecturespeaker');
+    const projectsanctionedNavItem = document.getElementById('projectsanctioned');
+    const journalsNavItem = document.getElementById('journals');
+    const bookspublishedNavItem = document.getElementById('bookspublished');
+    const conferencesNavItem = document.getElementById('conferences');
+    const workshopsorganisedNavItem = document.getElementById('workshopsorganised');
+    const foreignvisitsNavItem = document.getElementById('foreignvisits');
+    const otherachievementsNavItem = document.getElementById('otherachievements');
 
     // Get references to report containers
     const reportContainer0 = document.querySelector('.report-container0');
@@ -13,6 +16,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const reportContainer3 = document.querySelector('.report-container3');
     const reportContainer4 = document.querySelector('.report-container4');
     const reportContainer5 = document.querySelector('.report-container5');
+    const reportContainer6 = document.querySelector('.report-container6');
+    const reportContainer7 = document.querySelector('.report-container7');
+    const reportContainer8 = document.querySelector('.report-container8');
 
     // Function to hide all report containers
     function hideAllReportContainers() {
@@ -22,6 +28,9 @@ document.addEventListener('DOMContentLoaded', function() {
         reportContainer3.style.display = 'none';
         reportContainer4.style.display = 'none';
         reportContainer5.style.display = 'none';
+        reportContainer6.style.display = 'none';
+        reportContainer7.style.display = 'none';
+        reportContainer8.style.display = 'none';
     }
 
     // Hide all report containers except reportContainer0 on page load
@@ -30,28 +39,35 @@ document.addEventListener('DOMContentLoaded', function() {
 
     
 
-    articlesNavItem.addEventListener('click', function() {
+    guestlecturespeakerNavItem.addEventListener('click', function() {
         // Hide all report containers
         hideAllReportContainers();
         // Show the report container associated with articles
         reportContainer1.style.display = 'block';
     });
 
-    reportNavItem.addEventListener('click', function() {
+    projectsanctionedNavItem.addEventListener('click', function() {
         // Hide all report containers
         hideAllReportContainers();
         // Show the report container associated with report
         reportContainer2.style.display = 'block';
     });
 
-    institutionNavItem.addEventListener('click', function() {
+    journalsNavItem.addEventListener('click', function() {
         // Hide all report containers
         hideAllReportContainers();
         // Show the report container associated with institution
         reportContainer3.style.display = 'block';
     });
 
-    profileNavItem.addEventListener('click', function() {
+    conferencesNavItem.addEventListener('click', function() {
+        // Hide all report containers
+        hideAllReportContainers();
+        // Show the report container associated with profile
+        reportContainer5.style.display = 'block';
+    });
+
+    bookspublishedNavItem.addEventListener('click', function() {
         // Hide all report containers
         hideAllReportContainers();
         // Show the report container associated with profile
@@ -59,11 +75,25 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Add click event listeners to each navigation item
-    settingsNavItem.addEventListener('click', function() {
+    workshopsorganisedNavItem.addEventListener('click', function() {
         // Hide all report containers
         hideAllReportContainers();
         // Show the report container associated with dashboard
-        reportContainer5.style.display = 'block';
+        reportContainer6.style.display = 'block';
+    });
+
+    foreignvisitsNavItem.addEventListener('click', function() {
+        // Hide all report containers
+        hideAllReportContainers();
+        // Show the report container associated with dashboard
+        reportContainer7.style.display = 'block';
+    });
+
+    otherachievementsNavItem.addEventListener('click', function() {
+        // Hide all report containers
+        hideAllReportContainers();
+        // Show the report container associated with dashboard
+        reportContainer8.style.display = 'block';
     });
 });
 
