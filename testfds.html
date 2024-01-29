@@ -109,6 +109,45 @@
         }
     </style>
     <style>
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .card img {
+            width: 60%;
+        }
+
+        .title {
+            color: grey;
+            font-size: 18px;
+        }
+
+        button {
+            border: none;
+            outline: 0;
+            display: inline-block;
+            padding: 8px;
+            color: white;
+            background-color: #000;
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        button:hover,
+        a:hover {
+            opacity: 0.7;
+        }
+
         #datetime {
             font-size: 2em;
             color: #333;
@@ -274,13 +313,21 @@
 
             <div class="report-container0">
                 <div class="report-header">
-                    <h1 class="recent-Articles">Recent Articles</h1>
-                    <button class="view">Add Data</button>
+                    <h1 class="recent-Articles">Profile</h1>
+                    <button class="view">Edit Profile</button>
                 </div>
 
-                <!--    MAKE A PROFILE SECTION HERE -->
-
-
+                <div class="card">
+                    <img src="img/profile.jpeg" alt="John">
+                    <h1>Priyanshu Sharan</h1>
+                    <p class="title">Student</p>
+                    <p>Dayalbagh Educational Institute</p>
+                    <a href="#"><i class="fa fa-dribbble"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <p><button>Contact</button></p>
+                </div>
             </div>
             <!-- Guest lecture -->
             <div class="report-container1">
@@ -361,14 +408,6 @@
                     <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
                     </form>
                 </div>
-
-                <!-- <div class="form-container">
-                    <form id="myForm1">
-                        
-                    </form>
-                </div> -->
-
-
             </div>
         </div>
 
@@ -376,38 +415,36 @@
         <div class="report-container2">
             <div class="report-header">
                 <h1 class="recent-Articles">Projects Sanctioned</h1>
-                <button class="view">Add Data</button>
+                <button class="open-button view" onclick="openForm()">Add Data</button>
             </div>
 
-            <div class="form-container">
-                <form id="myForm2">
-                    <div class="form-group">
-                        <label for="name">Sanctioning Body</label>
-                        <input type="text" id="sanctioningbody" name="sanctioningbody" required>
-                    </div>
+            <form id="myForm2">
+                <div class="form-group">
+                    <label for="name">Sanctioning Body</label>
+                    <input type="text" id="sanctioningbody" name="sanctioningbody" required>
+                </div>
 
-                    <div class="form-group">
-                        <label for="email">Title</label>
-                        <input type="text" id="title" name="title" required>
-                    </div>
+                <div class="form-group">
+                    <label for="email">Title</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
 
-                    <div class="form-group">
-                        <label for="age">Fund</label>
-                        <input type="text" id="fund" name="fund" required>
-                    </div>
+                <div class="form-group">
+                    <label for="age">Fund</label>
+                    <input type="text" id="fund" name="fund" required>
+                </div>
 
-                    <div class="form-group">
-                        <label for="email">Start-Date</label>
-                        <input type="date" id="sdate" name="sdate" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">End-Date</label>
-                        <input type="date" id="edate" name="edate" required>
-                    </div>
+                <div class="form-group">
+                    <label for="email">Start-Date</label>
+                    <input type="date" id="sdate" name="sdate" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">End-Date</label>
+                    <input type="date" id="edate" name="edate" required>
+                </div>
 
-                    <button type="submit" class="submit-btn">Submit</button>
-                </form>
-            </div>
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
         </div>
 
         <!-- journal -->
