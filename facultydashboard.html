@@ -120,6 +120,38 @@
 
 
   </script>
+  <script>
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    // Function to fetch user data and update profile
+    function fetchUserProfile(userId) {
+        const userDocRef = db.collection('faculty').doc(userId);
+        userDocRef.get().then((doc) => {
+            if (doc.exists) {
+                const userData = doc.data();
+                // Update the HTML with the user's name
+                document.getElementById('user-name').textContent = userData.name;
+            } else {
+                console.log("No such document!");
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
+    }
+
+    // Check if user is logged in
+    auth.onAuthStateChanged((user) => {
+        if (user) {
+            // User is signed in, get the user's ID and fetch profile
+            const userId = user.uid;
+            fetchUserProfile(userId);
+        } else {
+            // No user is signed in.
+            console.log("No user signed in.");
+        }
+    });
+</script>
 </head>
 
 <body>
@@ -137,7 +169,7 @@
 
   <div class="header-name">
     <div id="datetime"></div>
-    <p id="username" class="name">Hey! <span>Priyanshu</span></p>
+    <p id="username" class="name">Hey! <span></span></p>
   </div>
 
   <div class="main-container">
@@ -205,22 +237,22 @@
 
       <div class="report-container0">
         <div class="report-header">
-          <h1 class="recent-Articles">Profile</h1>
-          <button class="view">Edit Profile</button>
+            <h1 class="recent-Articles">Profile</h1>
+            <button class="view">Edit Profile</button>
         </div>
-
+    
         <div class="card">
-          <img src="img/profile.jpeg" alt="John">
-          <h1>Priyanshu Sharan</h1>
-          <p class="title">Student</p>
-          <p>Dayalbagh Educational Institute</p>
-          <a href="#"><i class="fa fa-dribbble"></i></a>
-          <a href="#"><i class="fa fa-twitter"></i></a>
-          <a href="#"><i class="fa fa-linkedin"></i></a>
-          <a href="#"><i class="fa fa-facebook"></i></a>
-          <p><button>Contact</button></p>
+            <img id="profile-img" src="img/profile.jpeg" alt="John">
+            <h1 id="user-name"></h1>
+            <p class="title">Student</p>
+            <p id="institute">Dayalbagh Educational Institute</p>
+            <a href="#"><i class="fa fa-dribbble"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <p><button>Contact</button></p>
         </div>
-      </div>
+    </div>
       <!-- Guest lecture -->
       <div class="report-container1">
         <div class="report-header">
