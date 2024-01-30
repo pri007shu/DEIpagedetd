@@ -60,18 +60,20 @@ document.addEventListener('DOMContentLoaded', function() {
         reportContainer3.style.display = 'block';
     });
 
-    conferencesNavItem.addEventListener('click', function() {
-        // Hide all report containers
-        hideAllReportContainers();
-        // Show the report container associated with profile
-        reportContainer5.style.display = 'block';
-    });
+    
 
     bookspublishedNavItem.addEventListener('click', function() {
         // Hide all report containers
         hideAllReportContainers();
         // Show the report container associated with profile
         reportContainer4.style.display = 'block';
+    });
+
+    conferencesNavItem.addEventListener('click', function() {
+        // Hide all report containers
+        hideAllReportContainers();
+        // Show the report container associated with profile
+        reportContainer5.style.display = 'block';
     });
 
     // Add click event listeners to each navigation item
