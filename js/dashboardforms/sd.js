@@ -1,5 +1,11 @@
 // FDGL LOGIC
 
+
+         // Academic Performance
+
+
+
+
          // Get a reference to the Firestore service
          const db = firebase.firestore();
          const auth = firebase.auth();
@@ -13,17 +19,15 @@
      
            if (user) {
              // User is signed in, proceed to upload form data
-             const venue = document.getElementById('venue').value;
-             const date = document.getElementById('date').value;
-             const organisation = document.getElementById('organisation').value;
-             const theme = document.getElementById('theme').value;
+             const grades = document.getElementById('grades').value;
+             const sgpa = document.getElementById('sgpa').value;
+             
      
              // Upload form data to Firestore collection
-             db.collection("faculty").doc(user.uid).collection("fdgl").add({
-               venue: venue,
-               date: date,
-               organisation: organisation,
-               theme: theme
+             db.collection("students").doc(user.uid).collection("sdAcademicPerformance").add({
+              grades: grades,
+              sgpa: sgpa,
+            
              })
              .then(function(docRef) {
                console.log("Document written with ID: ", docRef.id);
@@ -41,6 +45,12 @@
          });
 
 
+
+
+         // Projects Sanctioned
+
+
+
          // Add an event listener to the form submission
          document.getElementById('myForm2').addEventListener('submit', function(event) {
           event.preventDefault(); // Prevent the form from submitting normally
@@ -50,15 +60,16 @@
     
           if (user) {
             // User is signed in, proceed to upload form data
-            const sanctioningbody = document.getElementById('sanctioningbody').value;
+            
             const title = document.getElementById('title').value;
-            const fund = document.getElementById('fund').value;
+            const supervision = document.getElementById('supervision').value;
+            const subject = document.getElementById('subject').value;
             const sdate = document.getElementById('sdate').value;
             const edate = document.getElementById('edate').value;
     
             // Upload form data to Firestore collection
-            db.collection("faculty").doc(user.uid).collection("fdps").add({
-               sanctioningbody: sanctioningbody,
+            db.collection("students").doc(user.uid).collection("sdprojects").add({
+              supervision: supervision,
               sdate: sdate,
               title: title,
               fund: fund,
@@ -79,6 +90,9 @@
           }
         });
 
+
+        // Patents
+
           // Add an event listener to the form submission
           document.getElementById('myForm3').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent the form from submitting normally
@@ -89,18 +103,18 @@
             if (user) {
               // User is signed in, proceed to upload form data
             
-              const title = document.getElementById('title').value;
-              const fund = document.getElementById('nameofjournal').value;
-              const sdate = document.getElementById('dateofpublication').value;
+              const nameofproducts = document.getElementById('nameofproducts').value;
+              const supervision = document.getElementById('supervision').value;
+              const date = document.getElementById('date').value;
               
       
               // Upload form data to Firestore collection
-              db.collection("faculty").doc(user.uid).collection("fdjr").add({
+              db.collection("students").doc(user.uid).collection("fdpatents").add({
                 
-                title: title,
+                nameofproducts: nameofproducts,
                
-                nameofjournal: nameofjournal,
-                dateofpublication: dateofpublication
+                supervision: supervision,
+                date: date
               })
               .then(function(docRef) {
                 console.log("Document written with ID: ", docRef.id);
@@ -117,6 +131,16 @@
             }
           });
 
+
+          // Research Papers
+
+
+          // complete from here okay //
+
+
+
+
+          
             // Add an event listener to the form submission
          document.getElementById('myForm4').addEventListener('submit', function(event) {
           event.preventDefault(); // Prevent the form from submitting normally
