@@ -2,229 +2,156 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, 
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, 
 				initial-scale=1.0">
-    <title>DEI ENGINEERING</title>
-    <link rel="icon" href="img/about12.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/dashboard.css">
-    <link rel="stylesheet" href="css/nav.css">
-    <link rel="stylesheet" href="css/home.css">
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/glform.css">
+  <title>GeeksForGeeks</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/glform.css">
 
-    <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-        }
+  <style>
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      max-width: 500px;
+      margin: auto;
+      text-align: center;
+    }
 
-        * {
-            box-sizing: border-box;
-        }
+    .card img {
+      width: 60%;
+    }
 
-        /* Button used to open the contact form - fixed at the bottom of the page */
-        .open-button {
-            position: relative;
-            top: 11px;
-            right: -15px;
-            width: 100px;
-        }
+    .title {
+      color: grey;
+      font-size: 18px;
+    }
 
-        /* The popup form - hidden by default */
-        .form-popup {
-            display: none;
-            position: absolute;
-            top: 118px;
-            right: 34px;
-            border: 3px solid #f1f1f1;
-            z-index: 9;
-            border-radius: px;
-        }
+    button {
+      border: none;
+      outline: 0;
+      display: inline-block;
+      padding: 8px;
+      color: white;
+      background-color: #000;
+      text-align: center;
+      cursor: pointer;
+      width: 100%;
+      font-size: 18px;
+    }
 
-        /* Add styles to the form container */
-        .form-container {
-            max-width: 300px;
-            padding: 10px;
-            background-color: white;
-        }
+    a {
+      text-decoration: none;
+      color: black;
+    }
 
-        /* Full-width input fields */
-        .form-container input[type=text],
-        .form-container input[type=password] {
-            width: 100%;
-            padding: 15px;
-            margin: 5px 0 22px 0;
-            border: none;
-            background: #f1f1f1;
-        }
+    button:hover,
+    a:hover {
+      opacity: 0.7;
+    }
 
-        /* When the inputs get focus, do something */
-        .form-container input[type=text]:focus,
-        .form-container input[type=password]:focus {
-            background-color: #ddd;
-            outline: none;
-        }
+    #datetime {
+      font-size: 2em;
+      color: #333;
+    }
+  </style>
+  <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-firestore.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-        /* Set a style for the submit/login button */
-        .form-container .btn {
-            background-color: #04AA6D;
-            color: white;
-            padding: 16px 20px;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-            margin-bottom: 10px;
-            opacity: 0.8;
-        }
+  <script>
+    // Replace with your Firebase project configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyCu3Jlxe8Ao3SphePEMG6qXE1f1_YYjb7o",
+      authDomain: "deipage-detd.firebaseapp.com",
+      projectId: "deipage-detd",
+      storageBucket: "deipage-detd.appspot.com",
+      messagingSenderId: "830390951653",
+      appId: "1:830390951653:web:92ad43a7a52c844c18be0c",
+      measurementId: "G-QFX4F832FE"
+    };
 
-        /* Add a red background color to the cancel button */
-        .form-container .cancel {
-            border: none;
-            outline: 0;
-            display: inline-block;
-            padding: 8px;
-            color: white;
-            background-color: #000;
-            text-align: center;
-            cursor: pointer;
-            width: 100%;
-            font-size: 18px;
-            margin-top: 20px;
-        }
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    function updateDateTime() {
+      var now = new Date();
+      var date = now.toDateString();
+      var time = now.toLocaleTimeString();
+      var seconds = now.getSeconds();
 
-        /* Add some hover effects to buttons */
-        .form-container .btn:hover,
-        .open-button:hover {
-            opacity: 1;
-        }
-    </style>
+      document.getElementById('datetime').innerHTML = date + ' ' + time;
+    }
 
-    <style>
-        table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
+    function updateUserName() {
+      // Check if there is a current user
+      const user = firebase.auth().currentUser;
+      if (user) {
+        // Fetch user data from Firestore and update the name
+        const userId = user.uid;
 
-        td,
-        th {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-
-        tr:nth-child(even) {
-            background-color: #dddddd;
-        }
-    </style>
-    <style>
-        .card {
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-            max-width: 500px;
-            margin: auto;
-            text-align: center;
-        }
-
-        .card img {
-            width: 60%;
-        }
-
-        .title {
-            color: grey;
-            font-size: 18px;
-        }
-
-        button {
-            border: none;
-            outline: 0;
-            display: inline-block;
-            padding: 8px;
-            color: white;
-            background-color: #000;
-            text-align: center;
-            cursor: pointer;
-            width: 100%;
-            font-size: 18px;
-        }
-
-        a {
-            text-decoration: none;
-            color: black;
-        }
-
-        button:hover,
-        a:hover {
-            opacity: 0.7;
-        }
-
-        #datetime {
-            font-size: 2em;
-            color: #333;
-        }
-    </style>
-    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-firestore.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <script>
-        // Replace with your Firebase project configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyCu3Jlxe8Ao3SphePEMG6qXE1f1_YYjb7o",
-            authDomain: "deipage-detd.firebaseapp.com",
-            projectId: "deipage-detd",
-            storageBucket: "deipage-detd.appspot.com",
-            messagingSenderId: "830390951653",
-            appId: "1:830390951653:web:92ad43a7a52c844c18be0c",
-            measurementId: "G-QFX4F832FE"
-        };
-
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        function updateDateTime() {
-            var now = new Date();
-            var date = now.toDateString();
-            var time = now.toLocaleTimeString();
-            var seconds = now.getSeconds();
-
-            document.getElementById('datetime').innerHTML = date + ' ' + time;
-        }
-
-        function updateUserName() {
-            // Check if there is a current user
-            const user = firebase.auth().currentUser;
-            if (user) {
-                // Fetch user data from Firestore and update the name
-                const userId = user.uid;
-
-                firebase.firestore().collection('faculty').doc(userId).get()
-                    .then((doc) => {
-                        if (doc.exists) {
-                            const userName = doc.data().name;
-                            document.getElementById('username').innerText = "Hey! " + userName;
-                        } else {
-                            console.error('User data not found in Firestore');
-                        }
-                    })
-                    .catch((error) => {
-                        console.error('Error fetching user data from Firestore:', error);
-                    });
+        firebase.firestore().collection('faculty').doc(userId).get()
+          .then((doc) => {
+            if (doc.exists) {
+              const userName = doc.data().name;
+              document.getElementById('username').innerText = "Hey! " + userName;
             } else {
-                console.error('No authenticated user');
+              console.error('User data not found in Firestore');
             }
+          })
+          .catch((error) => {
+            console.error('Error fetching user data from Firestore:', error);
+          });
+      } else {
+        console.error('No authenticated user');
+      }
+    }
+
+    setInterval(updateDateTime, 1000); // Update every 1000 milliseconds (1 second)
+    // Add a listener for authentication state change
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        updateUserName(); // Update user name on page load and on authentication state change
+      }
+    });
+
+
+  </script>
+  <script>
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    // Function to fetch user data and update profile
+    function fetchUserProfile(userId) {
+      const userDocRef = db.collection('faculty').doc(userId);
+      userDocRef.get().then((doc) => {
+        if (doc.exists) {
+          const userData = doc.data();
+          // Update the HTML with the user's name
+          document.getElementById('user-name').textContent = userData.name;
+        } else {
+          console.log("No such document!");
         }
+      }).catch((error) => {
+        console.log("Error getting document:", error);
+      });
+    }
 
-        setInterval(updateDateTime, 1000); // Update every 1000 milliseconds (1 second)
-        // Add a listener for authentication state change
-        firebase.auth().onAuthStateChanged(function (user) {
-            if (user) {
-                updateUserName(); // Update user name on page load and on authentication state change
-            }
-        });
-
-
-    </script>
+    // Check if user is logged in
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        // User is signed in, get the user's ID and fetch profile
+        const userId = user.uid;
+        fetchUserProfile(userId);
+      } else {
+        // No user is signed in.
+        console.log("No user signed in.");
+      }
+    });
+  </script>
 </head>
 
 <body>
@@ -283,20 +210,20 @@
                         <h3>Conferences</h3>
                     </div>
 
-                    <div id="workshopsorganised" class="nav-option option6">
-                        <img src="https://cdn-icons-png.flaticon.com/512/2117/2117039.png" class="nav-img"
-                            alt="workshopsorganised">
+                    <div id="workshopsorganised" class="nav-option option7">
+                        <img src="https://cdn-icons-png.flaticon.com/512/4804/4804803.png" class="nav-img"
+                            alt="conferences">
                         <h3>Workshops Organised</h3>
                     </div>
 
-                    <div id="foreignvisits" class="nav-option option6">
+                    <div id="foreignvisits" class="nav-option option8">
                         <img src="https://cdn-icons-png.flaticon.com/512/48/48596.png" class="nav-img"
                             alt="foreignvisits">
                         <h3>Foreign Visits</h3>
                     </div>
 
 
-                    <div id="otherachievements" class="nav-option option6">
+                    <div id="otherachievements" class="nav-option option9">
                         <img src="https://cdn-icons-png.flaticon.com/512/3601/3601252.png" class="nav-img"
                             alt="otherachievements">
                         <h3>Other Achievements</h3>
@@ -328,10 +255,10 @@
                 </div>
 
                 <div class="card">
-                    <img src="img/profile.jpeg" alt="John">
-                    <h1>Priyanshu Sharan</h1>
+                    <img id="profile-img" src="img/profile.jpeg" alt="John">
+                    <h1 id="user-name"></h1>
                     <p class="title">Student</p>
-                    <p>Dayalbagh Educational Institute</p>
+                    <p id="institute">Dayalbagh Educational Institute</p>
                     <a href="#"><i class="fa fa-dribbble"></i></a>
                     <a href="#"><i class="fa fa-twitter"></i></a>
                     <a href="#"><i class="fa fa-linkedin"></i></a>
@@ -348,7 +275,7 @@
                 </div>
 
                 <div class="table-container">
-                    <form id="myForm1">
+                    <form id="myTable1">
                         <table>
                             <tr>
                                 <th>Company</th>
@@ -390,7 +317,7 @@
                 </div>
 
                 <div class="form-popup" id="myForm_a">
-                    <form class="form-container">
+                    <form class="form-container" id="myForm1">
 
                         <div class="form-group">
                             <label for="name">Venue:</label>
@@ -428,7 +355,7 @@
                 </div>
 
                 <div class="table-container">
-                    <form id="myForm2">
+                    <form id="myTable2">
                         <table>
                             <tr>
                                 <th>Company</th>
@@ -470,7 +397,7 @@
                 </div>
 
                 <div class="form-popup" id="myForm_b">
-                    <form class="form-container">
+                    <form class="form-container" id="myForm2">
 
                         <div class="form-group">
                             <label for="name">Sanctioning Body</label>
@@ -511,7 +438,7 @@
                 </div>
 
                 <div class="table-container">
-                    <form id="myForm3">
+                    <form id="myTable3">
                         <table>
                             <tr>
                                 <th>Company</th>
@@ -554,7 +481,7 @@
 
 
                 <div class="form-popup" id="myForm_c">
-                    <form class="form-container">
+                    <form class="form-container" id="myForm3">
 
                         <div class="form-group">
                             <label for="email">Title</label>
@@ -587,7 +514,7 @@
                 </div>
 
                 <div class="table-container">
-                    <form id="myForm4">
+                    <form id="myTable4">
                         <table>
                             <tr>
                                 <th>Company</th>
@@ -629,7 +556,7 @@
                 </div>
 
                 <div class="form-popup" id="myForm_d">
-                    <form class="form-container">
+                    <form class="form-container" id="myForm4">
 
                         <div class="form-group">
                             <label for="email">Title</label>
@@ -667,7 +594,7 @@
                 </div>
 
                 <div class="table-container">
-                    <form id="myForm5">
+                    <form id="myTable5">
                         <table>
                             <tr>
                                 <th>Company</th>
@@ -710,7 +637,7 @@
 
 
                 <div class="form-popup" id="myForm_e">
-                    <form class="form-container">
+                    <form class="form-container" id="myForm5">
 
                         <div class="form-group">
                             <label for="email">Date</label>
@@ -747,7 +674,7 @@
                 </div>
 
                 <div class="table-container">
-                    <form id="myForm6">
+                    <form id="myTable6">
                         <table>
                             <tr>
                                 <th>Company</th>
@@ -790,7 +717,7 @@
 
 
                 <div class="form-popup" id="myForm_f">
-                    <form class="form-container">
+                    <form class="form-container" id="myForm" id="myForm6">
 
                         <div class="form-group">
                             <label for="name">Workshop Title</label>
@@ -832,7 +759,7 @@
                 </div>
 
                 <div class="table-container">
-                    <form id="myForm7">
+                    <form id="myTable7">
                         <table>
                             <tr>
                                 <th>Company</th>
@@ -875,7 +802,7 @@
 
 
                 <div class="form-popup" id="myForm_g">
-                    <form class="form-container">
+                    <form class="form-container" id="myForm" id="myForm7">
 
                         <div class="form-group">
                             <label for="email">Date</label>
@@ -907,7 +834,7 @@
                 </div>
 
                 <div class="table-container">
-                    <form id="myForm8">
+                    <form id="myTable8">
                         <table>
                             <tr>
                                 <th>Company</th>
@@ -950,7 +877,7 @@
 
 
                 <div class="form-popup" id="myForm_h">
-                    <form class="form-container">
+                    <form class="form-container" id="myForm" id="myForm8">
 
                         <div class="form-group">
                             <label for="name">Sanctioning Body:</label>
