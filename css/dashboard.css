@@ -12,11 +12,16 @@
     --background-color2: #ffffff;
     --background-color3: #ededed;
     --background-color4: #cad7fda4;
-    --primary-color: #000000;     /* Black */
-    --secondary-color: #000000;   /* Black */
-    --border-color: #000000;      /* Dark Grey */
-    --one-use-color: #333333;     /* Dark Grey */
-    --two-use-color: #000000;     /* Black */
+    --primary-color: #000000;
+    /* Black */
+    --secondary-color: #000000;
+    /* Black */
+    --border-color: #000000;
+    /* Dark Grey */
+    --one-use-color: #333333;
+    /* Dark Grey */
+    --two-use-color: #000000;
+    /* Black */
 }
 
 body {
@@ -25,12 +30,22 @@ body {
     overflow-x: hidden;
 }
 
-.name{
+.name {
     margin-left: 1vw;
     font-size: 3vw;
 }
 
-.name span{
+.size{
+    font-size: 1.5vw !important;
+    margin-left: 3vw !important;
+}
+
+.size2{
+    font-size: 1vw !important;
+    font-weight: bold;
+}
+
+.name span {
     font-weight: bold;
 }
 
@@ -127,7 +142,7 @@ body {
 
 .main {
     height: calc(100vh - 70px);
-    width: 100%;
+    width: 83.1%;
     overflow-y: scroll;
     overflow-x: hidden;
     padding: 40px 30px 30px 30px;
@@ -155,7 +170,7 @@ body {
 }
 
 .nav {
-    min-height: 91vh;
+    height: 115vh;
     width: 250px;
     background: #cbc9c9;
     position: absolute;
@@ -170,7 +185,7 @@ body {
 }
 
 .navcontainer {
-    height: calc(100vh - 70px);
+    height: calc(122vh - 70px);
     width: 250px;
     position: relative;
     overflow-y: scroll;
@@ -274,8 +289,8 @@ body {
     padding: 0px 20px 20px 20px;
 }
 
-h3{
-    color: rgb(59, 59, 143);
+h3 {
+    color: rgb(95, 95, 95);
 }
 
 .report-header {
@@ -285,7 +300,6 @@ h3{
     align-items: center;
     justify-content: space-between;
     padding: 20px 20px 10px 20px;
-    border-bottom: 2px solid rgba(0, 20, 151, 0.59);
 }
 
 .recent-Articles {
@@ -543,7 +557,7 @@ h3{
     }
 }
 
-.header-name{
+.header-name {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -552,10 +566,140 @@ h3{
     margin-right: 1vw;
 }
 
-#datetime{
+#datetime {
     font-size: 1.5vw !important;
 }
 
-#username{
+#username {
     font-size: 2vw;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 79vw;
+}
+
+.user-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 60px; /* Increase the padding */
+    width: 75vw; /* Increase the width */
+    min-height: 40vw;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 20px -5px rgba(0, 0, 0, 0.5);
+}
+
+.user-card:before {
+    content: '';
+    position: absolute;
+    height: 300%;
+    width: 45vh;
+    background: #262626;
+    top: -500px;
+    left: -250px;
+    z-index: 0;
+    transform: rotate(17deg);
+}
+
+.user-card-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+}
+
+.user-card-img img {
+    width: 22vw !important; /* Increase the width */
+    height: 25vw; /* Increase the height */
+    object-fit: cover;
+    margin-left: -1vw;
+    margin-right: 2vw;
+    border-radius: 5vw;
+    border: 5px solid black;
+}
+
+.user-card-info {
+    text-align: center;
+}
+
+.user-card-info h2 {
+    font-size: 5vw;
+    margin: 0;
+    margin-bottom: 5vw;
+    margin-left: -12vw;
+}
+
+.user-card-info p {
+    font-size: 2vw;
+    margin-bottom: 2px;
+}
+
+.user-card-info p span {
+    font-weight: 700;
+    margin-right: 10px;
+}
+
+@media only screen and (min-width: 768px) {
+    .user-card {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .user-card-img {
+        margin-right: 20px;
+        margin-bottom: 0;
+    }
+
+    .user-card-info {
+        text-align: left;
+    }
+}
+
+@media (max-width: 767px) {
+    .wrapper {
+        padding-top: 3%;
+    }
+
+    .user-card:before {
+        width: 300%;
+        height: 200px;
+        transform: rotate(0);
+    }
+
+    .user-card-info h2 {
+        margin-top: 25px;
+        font-size: 35px;
+    }
+
+    .user-card-info p span {
+        display: block;
+        margin-bottom: 15px;
+        font-size: 18px;
+    }
+}
+
+#institute{
+    margin-top: 7vw;
+    font-weight: bold;
+    background-color: #000000;
+    color: white;
+    text-align: center;
+    margin-left: -11vw;
+    border-radius: 8px;
+}
+
+.form-group2{
+    display: flex;
+    margin-bottom: 2vw;
+}
+
+.form-group2 label{
+    margin-right: 3vw;
 }

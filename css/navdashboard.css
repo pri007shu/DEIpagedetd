@@ -1,0 +1,90 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter';
+}
+
+p {
+    font-family: 'Inter';
+}
+
+a {
+    font-family: 'Inter';
+    text-decoration: none;
+}
+
+li {
+    font-family: 'Inter';
+    list-style: none;
+    width: 4vw;
+}
+
+/* NAVBAR STYLING STARTS */
+.navbar-2 {
+    /* position: sticky; */
+    top: 0;
+    left: 0;
+    z-index: 999999;
+    width: 83.1%;
+}
+
+.navbar_2 {
+    height: 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.1vw;
+    background: #e1dddd;
+    color: #111111;
+    width: 100%;
+    z-index: 999999;
+}
+
+.nav-links-2 a {
+    color: #111111;
+}
+
+.nav-links-2 a img {
+    width: 85%;
+}
+
+.left {
+    top: 0;
+    z-index: 999999;
+}
+
+/* LOGO */
+.logo {
+    display: flex;
+    align-items: center;
+    width: 26.5%;
+}
+
+.brand-logo {
+    margin-left: 2vw;
+    width: 12% !important;
+    margin-right: 0.8vw;
+}
+
+.logo-name {
+    color: #111111;
+    font-size: 1.2vw !important;
+    width: 55vw;
+}
+
+/* NAVBAR MENU */
+.menu-2 {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.menu-2 li {
+    padding: 1px 1px !important;
+    text-align: center;
+}
+
+.p-logo {
+    width: 80%;
+}
