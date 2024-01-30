@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,6 +13,110 @@
   <link rel="stylesheet" href="css/footer.css">
   <link rel="stylesheet" href="css/glform.css">
 
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Button used to open the contact form - fixed at the bottom of the page */
+    .open-button {
+      position: relative;
+      top: 11px;
+      right: -15px;
+      width: 100px;
+    }
+
+    /* The popup form - hidden by default */
+    .form-popup {
+      display: none;
+      position: absolute;
+      top: 118px;
+      right: 34px;
+      border: 3px solid #f1f1f1;
+      z-index: 9;
+      border-radius: px;
+    }
+
+    /* Add styles to the form container */
+    .form-container {
+      max-width: 300px;
+      padding: 10px;
+      background-color: white;
+    }
+
+    /* Full-width input fields */
+    .form-container input[type=text],
+    .form-container input[type=password] {
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      border: none;
+      background: #f1f1f1;
+    }
+
+    /* When the inputs get focus, do something */
+    .form-container input[type=text]:focus,
+    .form-container input[type=password]:focus {
+      background-color: #ddd;
+      outline: none;
+    }
+
+    /* Set a style for the submit/login button */
+    .form-container .btn {
+      background-color: #04AA6D;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom: 10px;
+      opacity: 0.8;
+    }
+
+    /* Add a red background color to the cancel button */
+    .form-container .cancel {
+      border: none;
+      outline: 0;
+      display: inline-block;
+      padding: 8px;
+      color: white;
+      background-color: #000;
+      text-align: center;
+      cursor: pointer;
+      width: 100%;
+      font-size: 18px;
+      margin-top: 20px;
+    }
+
+    /* Add some hover effects to buttons */
+    .form-container .btn:hover,
+    .open-button:hover {
+      opacity: 1;
+    }
+  </style>
+
+  <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td,
+    th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+  </style>
   <style>
     .card {
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -57,6 +161,7 @@
       font-size: 2em;
       color: #333;
     }
+  </style>
   </style>
   <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-auth.js"></script>
@@ -120,8 +225,38 @@
 
 
   </script>
-  <script src="js/dashboardprofilelogic/fdp.js"></script>
-  
+  <script>
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    // Function to fetch user data and update profile
+    function fetchUserProfile(userId) {
+      const userDocRef = db.collection('faculty').doc(userId);
+      userDocRef.get().then((doc) => {
+        if (doc.exists) {
+          const userData = doc.data();
+          // Update the HTML with the user's name
+          document.getElementById('user-name').textContent = userData.name;
+        } else {
+          console.log("No such document!");
+        }
+      }).catch((error) => {
+        console.log("Error getting document:", error);
+      });
+    }
+
+    // Check if user is logged in
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        // User is signed in, get the user's ID and fetch profile
+        const userId = user.uid;
+        fetchUserProfile(userId);
+      } else {
+        // No user is signed in.
+        console.log("No user signed in.");
+      }
+    });
+  </script>
 </head>
 
 <body>
@@ -139,7 +274,7 @@
 
   <div class="header-name">
     <div id="datetime"></div>
-    <p id="username" class="name">Hey! <span></span></p>
+    <p id="username" class="name">Hey! User<span></span></p>
   </div>
 
   <div class="main-container">
@@ -207,31 +342,52 @@
 
       <div class="report-container0">
         <div class="report-header">
-            <h1 class="recent-Articles">Profile</h1>
-            <button class="view">Edit Profile</button>
+          <h1 class="recent-Articles">Profile</h1>
+          <button class="view">Edit Profile</button>
         </div>
-    
+
         <div class="card">
-            <img id="profile-img" src="img/profile.jpeg" alt="John">
-            <h1 id="user-name"></h1>
-            <p class="title">Student</p>
-            <p id="institute">Dayalbagh Educational Institute</p>
-            <a href="#"><i class="fa fa-dribbble"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-linkedin"></i></a>
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <p><button>Contact</button></p>
+          <img id="profile-img" src="img/profile.jpeg" alt="John">
+          <h1 id="user-name"></h1>
+          <p class="title">Student</p>
+          <p id="institute">Dayalbagh Educational Institute</p>
+          <a href="#"><i class="fa fa-dribbble"></i></a>
+          <a href="#"><i class="fa fa-twitter"></i></a>
+          <a href="#"><i class="fa fa-linkedin"></i></a>
+          <a href="#"><i class="fa fa-facebook"></i></a>
+          <p><button>Contact</button></p>
         </div>
-    </div>
+      </div>
       <!-- Guest lecture -->
       <div class="report-container1">
         <div class="report-header">
           <h1 class="recent-Articles">Guest Lecture/ Speaker</h1>
-          <button class="view">View All</button>
+          <button class="open-button view" onclick="openForm1()">Add Data</button>
+          <!-- <button class="open-button view" onclick="openForm()">Add Data</button> -->
         </div>
 
-        <div class="form-container">
-          <form id="myForm1">
+        <div class="table-container">
+          <form id="myTable1">
+            <table>
+              <tr>
+                <th>Venue</th>
+                <th>Date</th>
+                <th>Organisation</th>
+                <th>Theme</th>
+              </tr>
+              <tr>
+                <td>none</td>
+                <td>none</td>
+                <td>none</td>
+                <td>none</td>
+              </tr>
+            </table>
+          </form>
+        </div>
+
+        <div class="form-popup" id="myForm_a">
+          <form class="form-container" id="myForm1">
+
             <div class="form-group">
               <label for="name">Venue:</label>
               <input type="text" id="venue" name="venue" required>
@@ -254,6 +410,9 @@
 
             <button type="submit" class="submit-btn">Submit</button>
           </form>
+
+          <button type="button" class="btn cancel" onclick="closeForm1()">Close</button>
+          </form>
         </div>
       </div>
 
@@ -261,13 +420,377 @@
       <div class="report-container2">
         <div class="report-header">
           <h1 class="recent-Articles">Projects Sanctioned</h1>
-          <button class="view">View All</button>
+          <button class="open-button view" onclick="openForm2()">Add Data</button>
         </div>
 
-        <div class="form-container">
-          <form id="myForm2">
+        <div class="table-container">
+          <form id="myTable2">
+            <table>
+              <tr>
+                <th>Sanctioning Body</th>
+                <th>Title</th>
+                <th>Fund</th>
+                <th>Start-Date</th>
+                <th>End-Date</th>
+              </tr>
+              <tr>
+                <td>none</td>
+                <td>none</td>
+                <td>none</td>
+                <td>none</td>
+                <td>none</td>
+              </tr>
+            </table>
+          </form>
+        </div>
+
+        <div class="form-popup" id="myForm_b">
+          <form class="form-container" id="myForm2">
+
             <div class="form-group">
               <label for="name">Sanctioning Body</label>
+              <input type="text" id="sanctioningbody" name="sanctioningbody" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Title</label>
+              <input type="text" id="title" name="title" required>
+            </div>
+
+            <div class="form-group">
+              <label for="age">Fund</label>
+              <input type="text" id="fund" name="fund" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Start-Date</label>
+              <input type="date" id="sdate" name="sdate" required>
+            </div>
+            <div class="form-group">
+              <label for="email">End-Date</label>
+              <input type="date" id="edate" name="edate" required>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit</button>
+
+            <button type="button" class="btn cancel" onclick="closeForm2()">Close</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- journal -->
+      <div class="report-container3">
+        <div class="report-header">
+          <h1 class="recent-Articles">Journals</h1>
+          <button class="open-button view" onclick="openForm3()">Add Data</button>
+        </div>
+
+        <div class="table-container">
+          <form id="myTable3">
+            <table>
+              <tr>
+                <th>Title</th>
+                <th>Name of Journal</th>
+                <th>Date of Publication</th>
+              </tr>
+              <tr>
+                <td>none</td>
+                <td>none</td>
+                <td>none</td>
+              </tr>
+            </table>
+          </form>
+        </div>
+
+
+        <div class="form-popup" id="myForm_c">
+          <form class="form-container" id="myForm3">
+
+            <div class="form-group">
+              <label for="email">Title</label>
+              <input type="text" id="title" name="title" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Name of Journal</label>
+              <input type="text" id="nameofjournal" name="nameofjournal" required>
+            </div>
+
+            <div class="form-group">
+              <label for="age">Date of Publication</label>
+              <input type="date" id="dateofpublication" name="dateofpublication" required>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit</button>
+
+            <button type="button" class="btn cancel" onclick="closeForm3()">Close</button>
+          </form>
+        </div>
+
+      </div>
+
+      <!-- Books published -->
+      <div class="report-container4">
+        <div class="report-header">
+          <h1 class="recent-Articles">Books Published</h1>
+          <button class="open-button view" onclick="openForm4()">Add Data</button>
+        </div>
+
+        <div class="table-container">
+          <form id="myTable4">
+            <table>
+              <tr>
+                <th>Title</th>
+                <th>Subject</th>
+                <th>Publication</th>
+                <th>Author(s)</th>
+              </tr>
+              <tr>
+                <td>none</td>
+                <td>none</td>
+                <td>none</td>
+                <td>none</td>
+              </tr>
+            </table>
+          </form>
+        </div>
+
+        <div class="form-popup" id="myForm_d">
+          <form class="form-container" id="myForm4">
+
+            <div class="form-group">
+              <label for="email">Title</label>
+              <input type="text" id="title" name="title" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Subject</label>
+              <input type="text" id="subject" name="subject" required>
+            </div>
+
+            <div class="form-group">
+              <label for="age">Publication</label>
+              <input type="text" id="publication" name="publication" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Author(s)</label>
+              <input type="text" id="author" name="author" required>
+            </div>
+
+
+            <button type="submit" class="submit-btn">Submit</button>
+
+            <button type="button" class="btn cancel" onclick="closeForm4()">Close</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Conferences -->
+      <div class="report-container5">
+        <div class="report-header">
+          <h1 class="recent-Articles">Conferences</h1>
+          <button class="open-button view" onclick="openForm5()">Add Data</button>
+        </div>
+
+        <div class="table-container">
+          <form id="myTable5">
+            <table>
+              <tr>
+                <th>Date</th>
+                <th>Location</th>
+                <th>Name</th>
+                <th>Topic</th>
+              </tr>
+              <tr>
+                <td>none</td>
+                <td>none</td>
+                <td>none</td>
+                <td>none</td>
+              </tr>
+            </table>
+          </form>
+        </div>
+
+
+        <div class="form-popup" id="myForm_e">
+          <form class="form-container" id="myForm5">
+
+            <div class="form-group">
+              <label for="email">Date</label>
+              <input type="date" id="date" name="date" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Location</label>
+              <input type="text" id="location" name="location" required>
+            </div>
+
+            <div class="form-group">
+              <label for="age">Name</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+              <label for="age">Topic</label>
+              <input type="text" id="topic" name="topic" required>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit</button>
+
+            <button type="button" class="btn cancel" onclick="closeForm5()">Close</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Workshop organised -->
+      <div class="report-container6">
+        <div class="report-header">
+          <h1 class="recent-Articles">Workshop Organised</h1>
+          <button class="open-button view" onclick="openForm6()">Add Data</button>
+        </div>
+
+        <div class="table-container">
+          <form id="myTable6">
+            <table>
+              <tr>
+                <th>Workshop Title</th>
+                <th>Subject</th>
+                <th>Date</th>
+                <th>Mode of Workshop</th>
+                <th>Location</th>
+              </tr>
+              <tr>
+                <td>none</td>
+                <td>none</td>
+                <td>none</td>
+                <td>none</td>
+                <td>none</td>
+              </tr>
+            </table>
+          </form>
+        </div>
+
+
+        <div class="form-popup" id="myForm_f">
+          <form class="form-container" id="myForm" id="myForm6">
+
+            <div class="form-group">
+              <label for="name">Workshop Title</label>
+              <input type="text" id="workshoptitle" name="workshoptitle" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Subject</label>
+              <input type="text" id="subject" name="subject" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Date</label>
+              <input type="date" id="date" name="date" required>
+            </div>
+
+            <div class="form-group">
+              <label for="name">Mode of Workshop</label>
+              <input type="text" id="modeofworkshop" name="modeofworkshop" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Location</label>
+              <input type="text" id="location" name="location" required>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit</button>
+
+            <button type="button" class="btn cancel" onclick="closeForm6()">Close</button>
+          </form>
+        </div>
+
+      </div>
+      <!-- Foreign visit -->
+      <div class="report-container7">
+        <div class="report-header">
+          <h1 class="recent-Articles">Foreign Visits</h1>
+          <button class="open-button view" onclick="openForm7()">Add Data</button>
+        </div>
+
+        <div class="table-container">
+          <form id="myTable7">
+            <table>
+              <tr>
+                <th>Date</th>
+                <th>Location</th>
+                <th>Cause</th>
+              </tr>
+              <tr>
+                <td>none</td>
+                <td>none</td>
+                <td>none</td>
+              </tr>
+            </table>
+          </form>
+        </div>
+
+
+        <div class="form-popup" id="myForm_g">
+          <form class="form-container" id="myForm" id="myForm7">
+
+            <div class="form-group">
+              <label for="email">Date</label>
+              <input type="date" id="date" name="date" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Location</label>
+              <input type="text" id="location" name="location" required>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Cause</label>
+              <textarea id="cause" name="cause" rows="4" required></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit</button>
+
+            <button type="button" class="btn cancel" onclick="closeForm7()">Close</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Other achievemet -->
+      <div class="report-container8">
+        <div class="report-header">
+          <h1 class="recent-Articles">Other Achievements</h1>
+          <button class="open-button view" onclick="openForm8()">Add Data</button>
+        </div>
+
+        <div class="table-container">
+          <form id="myTable8">
+            <table>
+              <tr>
+                <th>Sanctioning Body</th>
+                <th>Title</th>
+                <th>Fund</th>
+                <th>Start-Date</th>
+                <th>End-Date</th>
+              </tr>
+              <tr>
+                <td>none</td>
+                <td>none</td>
+                <td>none</td>
+                <td>none</td>
+                <td>none</td>
+              </tr>
+            </table>
+          </form>
+        </div>
+
+
+        <div class="form-popup" id="myForm_h">
+          <form class="form-container" id="myForm" id="myForm8">
+
+            <div class="form-group">
+              <label for="name">Sanctioning Body:</label>
               <input type="text" id="sanctioningbody" name="venue" required>
             </div>
 
@@ -291,218 +814,75 @@
             </div>
 
             <button type="submit" class="submit-btn">Submit</button>
+            <button type="button" class="btn cancel" onclick="closeForm8()">Close</button>
           </form>
         </div>
-      </div>
-
-      <!-- journal -->
-      <div class="report-container3">
-        <div class="report-header">
-          <h1 class="recent-Articles">Journals</h1>
-          <button class="view">View All</button>
-        </div>
-
-        <div class="form-container">
-          <form id="myForm3">
-            <div class="form-group">
-              <label for="email">Title</label>
-              <input type="text" id="title" name="date" required>
-            </div>
-
-            <div class="form-group">
-              <label for="email">Name of Journal</label>
-              <input type="text" id="title" name="date" required>
-            </div>
-
-            <div class="form-group">
-              <label for="email">Date of Publication</label>
-              <input type="date" id="date" name="date" required>
-            </div>
-
-            <button type="submit" class="submit-btn">Submit</button>
-          </form>
-        </div>
-
-
-      </div>
-
-      <!-- Books published -->
-      <div class="report-container4">
-        <div class="report-header">
-          <h1 class="recent-Articles">Books Published</h1>
-          <button class="view">View All</button>
-        </div>
-
-        <div class="form-container">
-          <form id="myForm4">
-            <div class="form-group">
-              <label for="email">Title</label>
-              <input type="text" id="title" name="date" required>
-            </div>
-
-            <div class="form-group">
-              <label for="email">Subject</label>
-              <input type="text" id="title" name="date" required>
-            </div>
-
-            <div class="form-group">
-              <label for="age">Publication</label>
-              <input type="text" id="fund" name="organisation" required>
-            </div>
-
-            <div class="form-group">
-              <label for="age">Author(s)</label>
-              <input type="text" id="fund" name="organisation" required>
-            </div>
-
-
-            <button type="submit" class="submit-btn">Submit</button>
-          </form>
-        </div>
-
-
-      </div>
-
-      <!-- Conferences -->
-      <div class="report-container5">
-        <div class="report-header">
-          <h1 class="recent-Articles">Conferences</h1>
-          <button class="view">View All</button>
-        </div>
-
-        <div class="form-container">
-          <form id="myForm5">
-            <div class="form-group">
-              <label for="email">Date</label>
-              <input type="date" id="date" name="date" required>
-            </div>
-
-            <div class="form-group">
-              <label for="age">Location</label>
-              <input type="text" id="fund" name="organisation" required>
-            </div>
-
-            <div class="form-group">
-              <label for="age">Name</label>
-              <input type="text" id="fund" name="organisation" required>
-            </div>
-
-            <div class="form-group">
-              <label for="age">Topic</label>
-              <input type="text" id="fund" name="organisation" required>
-            </div>
-
-            <button type="submit" class="submit-btn">Submit</button>
-          </form>
-        </div>
-
-
-      </div>
-
-      <!-- Workshop organised -->
-      <div class="report-container6">
-        <div class="report-header">
-          <h1 class="recent-Articles">Workshops Organised</h1>
-          <button class="view">View All</button>
-        </div>
-
-        <div class="form-container">
-          <form id="myForm6">
-            <div class="form-group">
-              <label for="name">Workshop Title</label>
-              <input type="text" id="sanctioningbody" name="venue" required>
-            </div>
-
-            <div class="form-group">
-              <label for="age">Subject</label>
-              <input type="text" id="fund" name="organisation" required>
-            </div>
-
-            <div class="form-group">
-              <label for="email">Date</label>
-              <input type="date" id="date" name="date" required>
-            </div>
-
-            <div class="form-group">
-              <label for="age">Mode of Workshop</label>
-              <input type="text" id="fund" name="organisation" required>
-            </div>
-
-            <div class="form-group">
-              <label for="age">Location</label>
-              <input type="text" id="fund" name="organisation" required>
-            </div>
-
-            <button type="submit" class="submit-btn">Submit</button>
-          </form>
-        </div>
-
-
-      </div>
-      <!-- Foreign visit -->
-      <div class="report-container7">
-        <div class="report-header">
-          <h1 class="recent-Articles">Foreign visit</h1>
-          <button class="view">View All</button>
-        </div>
-
-        <div class="form-container">
-          <form id="myForm7">
-
-            <div class="form-group">
-              <label for="email">Date</label>
-              <input type="date" id="date" name="date" required>
-            </div>
-            <div class="form-group">
-              <label for="age">Cause</label>
-              <input type="text" id="fund" name="organisation" required>
-            </div>
-
-            <button type="submit" class="submit-btn">Submit</button>
-          </form>
-        </div>
-
-      </div>
-
-      <!-- Other achievemet -->
-      <div class="report-container8">
-        <div class="report-header">
-          <h1 class="recent-Articles">Other Achievements</h1>
-          <button class="view">View All</button>
-        </div>
-
-        <div class="form-container">
-          <form id="myForm8">
-            <div class="form-group">
-              <label for="name">Achievement Title</label>
-              <input type="text" id="sanctioningbody" name="venue" required>
-            </div>
-
-            <div class="form-group">
-              <label for="email">Organised By</label>
-              <input type="text" id="title" name="date" required>
-            </div>
-
-
-            <div class="form-group">
-              <label for="email">Date</label>
-              <input type="date" id="date" name="date" required>
-            </div>
-
-            <div class="form-group">
-              <label for="email">Reference link</label>
-              <input type="text" id="title" name="date" required>
-            </div>
-
-            <button type="submit" class="submit-btn">Submit</button>
-          </form>
-        </div>
-
-
       </div>
     </div>
   </div>
 
+  <script>
+    function openForm1() {
+      document.getElementById("myForm_a").style.display = "block";
+    }
+
+    function closeForm1() {
+      document.getElementById("myForm_a").style.display = "none";
+    }
+
+    function openForm2() {
+      document.getElementById("myForm_b").style.display = "block";
+    }
+
+    function closeForm2() {
+      document.getElementById("myForm_b").style.display = "none";
+    }
+
+    function openForm3() {
+      document.getElementById("myForm_c").style.display = "block";
+    }
+
+    function closeForm3() {
+      document.getElementById("myForm_c").style.display = "none";
+    }
+
+    function openForm4() {
+      document.getElementById("myForm_d").style.display = "block";
+    }
+
+    function closeForm4() {
+      document.getElementById("myForm_d").style.display = "none";
+    }
+
+    function openForm5() {
+      document.getElementById("myForm_e").style.display = "block";
+    }
+
+    function closeForm5() {
+      document.getElementById("myForm_e").style.display = "none";
+    }
+    function openForm6() {
+      document.getElementById("myForm_f").style.display = "block";
+    }
+
+    function closeForm6() {
+      document.getElementById("myForm_f").style.display = "none";
+    }
+    function openForm7() {
+      document.getElementById("myForm_g").style.display = "block";
+    }
+
+    function closeForm7() {
+      document.getElementById("myForm_g").style.display = "none";
+    }
+    function openForm8() {
+      document.getElementById("myForm_h").style.display = "block";
+    }
+
+    function closeForm8() {
+      document.getElementById("myForm_h").style.display = "none";
+    }
+  </script>
   <!-- footer -->
   <script src="./index.js"></script>
   <div class="footer-main"></div>
