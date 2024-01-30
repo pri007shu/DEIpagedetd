@@ -54,14 +54,14 @@ document.addEventListener('DOMContentLoaded', function() {
         reportContainer3.style.display = 'block';
     });
 
-    conferencesNavItem.addEventListener('click', function() {
+    researchpapersNavItem.addEventListener('click', function() {
         // Hide all report containers
         hideAllReportContainers();
         // Show the report container associated with profile
         reportContainer5.style.display = 'block';
     });
 
-    bookspublishedNavItem.addEventListener('click', function() {
+    academicachievementsNavItem.addEventListener('click', function() {
         // Hide all report containers
         hideAllReportContainers();
         // Show the report container associated with profile
@@ -69,26 +69,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Add click event listeners to each navigation item
-    researchpapersNavItem.addEventListener('click', function() {
+    nonacademicachievementsNavItem.addEventListener('click', function() {
         // Hide all report containers
         hideAllReportContainers();
         // Show the report container associated with dashboard
         reportContainer6.style.display = 'block';
     });
 
-    academicachievementsNavItem.addEventListener('click', function() {
-        // Hide all report containers
-        hideAllReportContainers();
-        // Show the report container associated with dashboard
-        reportContainer7.style.display = 'block';
-    });
 
-    nonacademicachievementsNavItem.addEventListener('click', function() {
-        // Hide all report containers
-        hideAllReportContainers();
-        // Show the report container associated with dashboard
-        reportContainer8.style.display = 'block';
-    });
 });
 
 
