@@ -80,7 +80,17 @@
 
         /* Add a red background color to the cancel button */
         .form-container .cancel {
-            background-color: red;
+            border: none;
+            outline: 0;
+            display: inline-block;
+            padding: 8px;
+            color: white;
+            background-color: #000;
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+            margin-top: 20px;
         }
 
         /* Add some hover effects to buttons */
@@ -333,7 +343,7 @@
             <div class="report-container1">
                 <div class="report-header">
                     <h1 class="recent-Articles">Guest Lecture/ Speaker</h1>
-                    <button class="open-button view" onclick="openForm()">Add Data</button>
+                    <button class="open-button view" onclick="openForm1()">Add Data</button>
                     <!-- <button class="open-button view" onclick="openForm()">Add Data</button> -->
                 </div>
 
@@ -380,7 +390,7 @@
                 </div>
 
                 <div class="form-popup" id="myForm_a">
-                    <form action="/action_page.php" class="form-container">
+                    <form class="form-container">
 
                         <div class="form-group">
                             <label for="name">Venue:</label>
@@ -405,7 +415,7 @@
                         <button type="submit" class="submit-btn">Submit</button>
                     </form>
 
-                    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                    <button type="button" class="btn cancel" onclick="closeForm1()">Close</button>
                     </form>
                 </div>
             </div>
@@ -414,87 +424,138 @@
             <div class="report-container2">
                 <div class="report-header">
                     <h1 class="recent-Articles">Projects Sanctioned</h1>
-                    <button class="open-button view" onclick="openForm()">Add Data</button>
+                    <button class="open-button view" onclick="openForm2()">Add Data</button>
                 </div>
 
-                <form id="myForm2">
-                    <table>
-                        <tr>
-                            <th>Company</th>
-                            <th>Contact</th>
-                            <th>Country</th>
-                        </tr>
-                        <tr>
-                            <td>Alfreds Futterkiste</td>
-                            <td>Maria Anders</td>
-                            <td>Germany</td>
-                        </tr>
-                        <tr>
-                            <td>Centro comercial Moctezuma</td>
-                            <td>Francisco Chang</td>
-                            <td>Mexico</td>
-                        </tr>
-                        <tr>
-                            <td>Ernst Handel</td>
-                            <td>Roland Mendel</td>
-                            <td>Austria</td>
-                        </tr>
-                        <tr>
-                            <td>Island Trading</td>
-                            <td>Helen Bennett</td>
-                            <td>UK</td>
-                        </tr>
-                        <tr>
-                            <td>Laughing Bacchus Winecellars</td>
-                            <td>Yoshi Tannamuri</td>
-                            <td>Canada</td>
-                        </tr>
-                        <tr>
-                            <td>Magazzini Alimentari Riuniti</td>
-                            <td>Giovanni Rovelli</td>
-                            <td>Italy</td>
-                        </tr>
-                    </table>
-                </form>
+                <div class="table-container">
+                    <form id="myForm2">
+                        <table>
+                            <tr>
+                                <th>Company</th>
+                                <th>Contact</th>
+                                <th>Country</th>
+                            </tr>
+                            <tr>
+                                <td>Alfreds Futterkiste</td>
+                                <td>Maria Anders</td>
+                                <td>Germany</td>
+                            </tr>
+                            <tr>
+                                <td>Centro comercial Moctezuma</td>
+                                <td>Francisco Chang</td>
+                                <td>Mexico</td>
+                            </tr>
+                            <tr>
+                                <td>Ernst Handel</td>
+                                <td>Roland Mendel</td>
+                                <td>Austria</td>
+                            </tr>
+                            <tr>
+                                <td>Island Trading</td>
+                                <td>Helen Bennett</td>
+                                <td>UK</td>
+                            </tr>
+                            <tr>
+                                <td>Laughing Bacchus Winecellars</td>
+                                <td>Yoshi Tannamuri</td>
+                                <td>Canada</td>
+                            </tr>
+                            <tr>
+                                <td>Magazzini Alimentari Riuniti</td>
+                                <td>Giovanni Rovelli</td>
+                                <td>Italy</td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
 
-                <form id="myForm_b">
-                    <div class="form-group">
-                        <label for="name">Sanctioning Body</label>
-                        <input type="text" id="sanctioningbody" name="sanctioningbody" required>
-                    </div>
+                <div class="form-popup" id="myForm_b">
+                    <form class="form-container">
 
-                    <div class="form-group">
-                        <label for="email">Title</label>
-                        <input type="text" id="title" name="title" required>
-                    </div>
+                        <div class="form-group">
+                            <label for="name">Sanctioning Body</label>
+                            <input type="text" id="sanctioningbody" name="sanctioningbody" required>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="age">Fund</label>
-                        <input type="text" id="fund" name="fund" required>
-                    </div>
+                        <div class="form-group">
+                            <label for="email">Title</label>
+                            <input type="text" id="title" name="title" required>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="email">Start-Date</label>
-                        <input type="date" id="sdate" name="sdate" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">End-Date</label>
-                        <input type="date" id="edate" name="edate" required>
-                    </div>
+                        <div class="form-group">
+                            <label for="age">Fund</label>
+                            <input type="text" id="fund" name="fund" required>
+                        </div>
 
-                    <button type="submit" class="submit-btn">Submit</button>
-                </form>
+                        <div class="form-group">
+                            <label for="email">Start-Date</label>
+                            <input type="date" id="sdate" name="sdate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">End-Date</label>
+                            <input type="date" id="edate" name="edate" required>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Submit</button>
+
+                        <button type="button" class="btn cancel" onclick="closeForm1()">Close</button>
+                    </form>
+                </div>
             </div>
 
             <!-- journal -->
             <div class="report-container3">
                 <div class="report-header">
                     <h1 class="recent-Articles">Journals</h1>
-                    <button class="view">Add Data</button>
+                    <button class="open-button view" onclick="openForm3()">Add Data</button>
                 </div>
 
-                <div class="form-container">
+                <div class="table-container">
                     <form id="myForm3">
+                        <table>
+                            <tr>
+                                <th>Company</th>
+                                <th>Contact</th>
+                                <th>Country</th>
+                            </tr>
+                            <tr>
+                                <td>Alfreds Futterkiste</td>
+                                <td>Maria Anders</td>
+                                <td>Germany</td>
+                            </tr>
+                            <tr>
+                                <td>Centro comercial Moctezuma</td>
+                                <td>Francisco Chang</td>
+                                <td>Mexico</td>
+                            </tr>
+                            <tr>
+                                <td>Ernst Handel</td>
+                                <td>Roland Mendel</td>
+                                <td>Austria</td>
+                            </tr>
+                            <tr>
+                                <td>Island Trading</td>
+                                <td>Helen Bennett</td>
+                                <td>UK</td>
+                            </tr>
+                            <tr>
+                                <td>Laughing Bacchus Winecellars</td>
+                                <td>Yoshi Tannamuri</td>
+                                <td>Canada</td>
+                            </tr>
+                            <tr>
+                                <td>Magazzini Alimentari Riuniti</td>
+                                <td>Giovanni Rovelli</td>
+                                <td>Italy</td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+
+
+                <div class="form-popup" id="myForm_c">
+                    <form class="form-container">
+
                         <div class="form-group">
                             <label for="email">Title</label>
                             <input type="text" id="title" name="title" required>
@@ -511,9 +572,10 @@
                         </div>
 
                         <button type="submit" class="submit-btn">Submit</button>
+
+                        <button type="button" class="btn cancel" onclick="closeForm3()">Close</button>
                     </form>
                 </div>
-
 
             </div>
 
@@ -521,11 +583,54 @@
             <div class="report-container4">
                 <div class="report-header">
                     <h1 class="recent-Articles">Books Published</h1>
-                    <button class="view">Add Data</button>
+                    <button class="open-button view" onclick="openForm4()">Add Data</button>
                 </div>
 
-                <div class="form-container">
+                <div class="table-container">
                     <form id="myForm4">
+                        <table>
+                            <tr>
+                                <th>Company</th>
+                                <th>Contact</th>
+                                <th>Country</th>
+                            </tr>
+                            <tr>
+                                <td>Alfreds Futterkiste</td>
+                                <td>Maria Anders</td>
+                                <td>Germany</td>
+                            </tr>
+                            <tr>
+                                <td>Centro comercial Moctezuma</td>
+                                <td>Francisco Chang</td>
+                                <td>Mexico</td>
+                            </tr>
+                            <tr>
+                                <td>Ernst Handel</td>
+                                <td>Roland Mendel</td>
+                                <td>Austria</td>
+                            </tr>
+                            <tr>
+                                <td>Island Trading</td>
+                                <td>Helen Bennett</td>
+                                <td>UK</td>
+                            </tr>
+                            <tr>
+                                <td>Laughing Bacchus Winecellars</td>
+                                <td>Yoshi Tannamuri</td>
+                                <td>Canada</td>
+                            </tr>
+                            <tr>
+                                <td>Magazzini Alimentari Riuniti</td>
+                                <td>Giovanni Rovelli</td>
+                                <td>Italy</td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+
+                <div class="form-popup" id="myForm_d">
+                    <form class="form-container">
+
                         <div class="form-group">
                             <label for="email">Title</label>
                             <input type="text" id="title" name="title" required>
@@ -548,21 +653,65 @@
 
 
                         <button type="submit" class="submit-btn">Submit</button>
+
+                        <button type="button" class="btn cancel" onclick="closeForm4()">Close</button>
                     </form>
                 </div>
-
-
             </div>
 
             <!-- Conferences -->
             <div class="report-container5">
                 <div class="report-header">
                     <h1 class="recent-Articles">Conferences</h1>
-                    <button class="view">Add Data</button>
+                    <button class="open-button view" onclick="openForm5()">Add Data</button>
                 </div>
 
-                <div class="form-container">
-                    <form id="myForm5">
+                <div class="table-container">
+                    <form id="myForm3">
+                        <table>
+                            <tr>
+                                <th>Company</th>
+                                <th>Contact</th>
+                                <th>Country</th>
+                            </tr>
+                            <tr>
+                                <td>Alfreds Futterkiste</td>
+                                <td>Maria Anders</td>
+                                <td>Germany</td>
+                            </tr>
+                            <tr>
+                                <td>Centro comercial Moctezuma</td>
+                                <td>Francisco Chang</td>
+                                <td>Mexico</td>
+                            </tr>
+                            <tr>
+                                <td>Ernst Handel</td>
+                                <td>Roland Mendel</td>
+                                <td>Austria</td>
+                            </tr>
+                            <tr>
+                                <td>Island Trading</td>
+                                <td>Helen Bennett</td>
+                                <td>UK</td>
+                            </tr>
+                            <tr>
+                                <td>Laughing Bacchus Winecellars</td>
+                                <td>Yoshi Tannamuri</td>
+                                <td>Canada</td>
+                            </tr>
+                            <tr>
+                                <td>Magazzini Alimentari Riuniti</td>
+                                <td>Giovanni Rovelli</td>
+                                <td>Italy</td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+
+
+                <div class="form-popup" id="myForm_e">
+                    <form class="form-container">
+
                         <div class="form-group">
                             <label for="email">Date</label>
                             <input type="date" id="date" name="date" required>
@@ -584,10 +733,10 @@
                         </div>
 
                         <button type="submit" class="submit-btn">Submit</button>
+
+                        <button type="button" class="btn cancel" onclick="closeForm5()">Close</button>
                     </form>
                 </div>
-
-
             </div>
 
             <!-- Workshop organised -->
@@ -703,20 +852,44 @@
     </div>
 
     <script>
-        function openForm() {
+        function openForm1() {
             document.getElementById("myForm_a").style.display = "block";
         }
 
-        function closeForm() {
+        function closeForm1() {
             document.getElementById("myForm_a").style.display = "none";
         }
 
-        function openForm() {
+        function openForm2() {
             document.getElementById("myForm_b").style.display = "block";
         }
 
-        function closeForm() {
+        function closeForm2() {
             document.getElementById("myForm_b").style.display = "none";
+        }
+
+        function openForm3() {
+            document.getElementById("myForm_c").style.display = "block";
+        }
+
+        function closeForm3() {
+            document.getElementById("myForm_c").style.display = "none";
+        }
+
+        function openForm4() {
+            document.getElementById("myForm_d").style.display = "block";
+        }
+
+        function closeForm4() {
+            document.getElementById("myForm_d").style.display = "none";
+        }
+
+        function openForm5() {
+            document.getElementById("myForm_e").style.display = "block";
+        }
+
+        function closeForm5() {
+            document.getElementById("myForm_e").style.display = "none";
         }
     </script>
 
