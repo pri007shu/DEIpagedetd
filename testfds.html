@@ -409,258 +409,297 @@
                     </form>
                 </div>
             </div>
-        </div>
 
-        <!-- Projects -->
-        <div class="report-container2">
-            <div class="report-header">
-                <h1 class="recent-Articles">Projects Sanctioned</h1>
-                <button class="open-button view" onclick="openForm()">Add Data</button>
-            </div>
-
-            <form id="myForm2">
-                <div class="form-group">
-                    <label for="name">Sanctioning Body</label>
-                    <input type="text" id="sanctioningbody" name="sanctioningbody" required>
+            <!-- Projects -->
+            <div class="report-container2">
+                <div class="report-header">
+                    <h1 class="recent-Articles">Projects Sanctioned</h1>
+                    <button class="open-button view" onclick="openForm()">Add Data</button>
                 </div>
 
-                <div class="form-group">
-                    <label for="email">Title</label>
-                    <input type="text" id="title" name="title" required>
-                </div>
+                <form id="myForm2">
+                    <table>
+                        <tr>
+                            <th>Company</th>
+                            <th>Contact</th>
+                            <th>Country</th>
+                        </tr>
+                        <tr>
+                            <td>Alfreds Futterkiste</td>
+                            <td>Maria Anders</td>
+                            <td>Germany</td>
+                        </tr>
+                        <tr>
+                            <td>Centro comercial Moctezuma</td>
+                            <td>Francisco Chang</td>
+                            <td>Mexico</td>
+                        </tr>
+                        <tr>
+                            <td>Ernst Handel</td>
+                            <td>Roland Mendel</td>
+                            <td>Austria</td>
+                        </tr>
+                        <tr>
+                            <td>Island Trading</td>
+                            <td>Helen Bennett</td>
+                            <td>UK</td>
+                        </tr>
+                        <tr>
+                            <td>Laughing Bacchus Winecellars</td>
+                            <td>Yoshi Tannamuri</td>
+                            <td>Canada</td>
+                        </tr>
+                        <tr>
+                            <td>Magazzini Alimentari Riuniti</td>
+                            <td>Giovanni Rovelli</td>
+                            <td>Italy</td>
+                        </tr>
+                    </table>
+                </form>
 
-                <div class="form-group">
-                    <label for="age">Fund</label>
-                    <input type="text" id="fund" name="fund" required>
-                </div>
+                <form id="myForm_b">
+                    <div class="form-group">
+                        <label for="name">Sanctioning Body</label>
+                        <input type="text" id="sanctioningbody" name="sanctioningbody" required>
+                    </div>
 
-                <div class="form-group">
-                    <label for="email">Start-Date</label>
-                    <input type="date" id="sdate" name="sdate" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">End-Date</label>
-                    <input type="date" id="edate" name="edate" required>
-                </div>
-
-                <button type="submit" class="submit-btn">Submit</button>
-            </form>
-        </div>
-
-        <!-- journal -->
-        <div class="report-container3">
-            <div class="report-header">
-                <h1 class="recent-Articles">Journals</h1>
-                <button class="view">Add Data</button>
-            </div>
-
-            <div class="form-container">
-                <form id="myForm3">
                     <div class="form-group">
                         <label for="email">Title</label>
                         <input type="text" id="title" name="title" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="email">Name of Journal</label>
-                        <input type="text" id="nameofjournal" name="nameofjournal" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="age">Date of Publication</label>
-                        <input type="date" id="dateofpublication" name="dateofpublication" required>
-                    </div>
-
-                    <button type="submit" class="submit-btn">Submit</button>
-                </form>
-            </div>
-
-
-        </div>
-
-        <!-- Books published -->
-        <div class="report-container4">
-            <div class="report-header">
-                <h1 class="recent-Articles">Books Published</h1>
-                <button class="view">Add Data</button>
-            </div>
-
-            <div class="form-container">
-                <form id="myForm4">
-                    <div class="form-group">
-                        <label for="email">Title</label>
-                        <input type="text" id="title" name="title" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Subject</label>
-                        <input type="text" id="subject" name="subject" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="age">Publication</label>
-                        <input type="text" id="publication" name="publication" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Author(s)</label>
-                        <input type="text" id="author" name="author" required>
-                    </div>
-
-
-                    <button type="submit" class="submit-btn">Submit</button>
-                </form>
-            </div>
-
-
-        </div>
-
-        <!-- Conferences -->
-        <div class="report-container5">
-            <div class="report-header">
-                <h1 class="recent-Articles">Conferences</h1>
-                <button class="view">Add Data</button>
-            </div>
-
-            <div class="form-container">
-                <form id="myForm5">
-                    <div class="form-group">
-                        <label for="email">Date</label>
-                        <input type="date" id="date" name="date" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Location</label>
-                        <input type="text" id="location" name="location" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="age">Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="age">Topic</label>
-                        <input type="text" id="topic" name="topic" required>
-                    </div>
-
-                    <button type="submit" class="submit-btn">Submit</button>
-                </form>
-            </div>
-
-
-        </div>
-
-        <!-- Workshop organised -->
-        <div class="report-container6">
-            <div class="report-header">
-                <h1 class="recent-Articles">Workshop Organised</h1>
-                <button class="view">Add Data</button>
-            </div>
-
-            <div class="form-container">
-                <form id="myForm6">
-                    <div class="form-group">
-                        <label for="name">Workshop Title</label>
-                        <input type="text" id="workshoptitle" name="workshoptitle" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Subject</label>
-                        <input type="text" id="subject" name="subject" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Date</label>
-                        <input type="date" id="date" name="date" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="name">Mode ofWorkshop</label>
-                        <input type="text" id="modeofworkshop" name="modeofworkshop" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Location</label>
-                        <input type="text" id="location" name="location" required>
-                    </div>
-
-                    <button type="submit" class="submit-btn">Submit</button>
-                </form>
-            </div>
-
-
-        </div>
-        <!-- Foreign visit -->
-        <div class="report-container7">
-            <div class="report-header">
-                <h1 class="recent-Articles">Foreign Visits</h1>
-                <button class="view">Add Data</button>
-            </div>
-
-            <div class="form-container">
-                <form id="myForm7">
-                    <div class="form-group">
-                        <label for="email">Date</label>
-                        <input type="date" id="date" name="date" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Location</label>
-                        <input type="text" id="location" name="location" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message">Cause</label>
-                        <textarea id="cause" name="cause" rows="4" required></textarea>
-                    </div>
-
-                    <button type="submit" class="submit-btn">Submit</button>
-                </form>
-            </div>
-
-        </div>
-
-        <!-- Other achievemet -->
-        <div class="report-container8">
-            <div class="report-header">
-                <h1 class="recent-Articles">Other Achievements</h1>
-                <button class="view">Add Data</button>
-            </div>
-
-            <div class="form-container">
-                <form id="myForm8">
-                    <div class="form-group">
-                        <label for="name">Sanctioning Body:</label>
-                        <input type="text" id="sanctioningbody" name="venue" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Title</label>
-                        <input type="text" id="title" name="date" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="age">Fund:</label>
-                        <input type="text" id="fund" name="organisation" required>
+                        <label for="age">Fund</label>
+                        <input type="text" id="fund" name="fund" required>
                     </div>
 
                     <div class="form-group">
                         <label for="email">Start-Date</label>
-                        <input type="date" id="sdate" name="date" required>
+                        <input type="date" id="sdate" name="sdate" required>
                     </div>
                     <div class="form-group">
                         <label for="email">End-Date</label>
-                        <input type="date" id="edate" name="date" required>
+                        <input type="date" id="edate" name="edate" required>
                     </div>
 
                     <button type="submit" class="submit-btn">Submit</button>
                 </form>
             </div>
 
+            <!-- journal -->
+            <div class="report-container3">
+                <div class="report-header">
+                    <h1 class="recent-Articles">Journals</h1>
+                    <button class="view">Add Data</button>
+                </div>
 
+                <div class="form-container">
+                    <form id="myForm3">
+                        <div class="form-group">
+                            <label for="email">Title</label>
+                            <input type="text" id="title" name="title" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Name of Journal</label>
+                            <input type="text" id="nameofjournal" name="nameofjournal" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="age">Date of Publication</label>
+                            <input type="date" id="dateofpublication" name="dateofpublication" required>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Submit</button>
+                    </form>
+                </div>
+
+
+            </div>
+
+            <!-- Books published -->
+            <div class="report-container4">
+                <div class="report-header">
+                    <h1 class="recent-Articles">Books Published</h1>
+                    <button class="view">Add Data</button>
+                </div>
+
+                <div class="form-container">
+                    <form id="myForm4">
+                        <div class="form-group">
+                            <label for="email">Title</label>
+                            <input type="text" id="title" name="title" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="age">Publication</label>
+                            <input type="text" id="publication" name="publication" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Author(s)</label>
+                            <input type="text" id="author" name="author" required>
+                        </div>
+
+
+                        <button type="submit" class="submit-btn">Submit</button>
+                    </form>
+                </div>
+
+
+            </div>
+
+            <!-- Conferences -->
+            <div class="report-container5">
+                <div class="report-header">
+                    <h1 class="recent-Articles">Conferences</h1>
+                    <button class="view">Add Data</button>
+                </div>
+
+                <div class="form-container">
+                    <form id="myForm5">
+                        <div class="form-group">
+                            <label for="email">Date</label>
+                            <input type="date" id="date" name="date" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Location</label>
+                            <input type="text" id="location" name="location" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="age">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="age">Topic</label>
+                            <input type="text" id="topic" name="topic" required>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Submit</button>
+                    </form>
+                </div>
+
+
+            </div>
+
+            <!-- Workshop organised -->
+            <div class="report-container6">
+                <div class="report-header">
+                    <h1 class="recent-Articles">Workshop Organised</h1>
+                    <button class="view">Add Data</button>
+                </div>
+
+                <div class="form-container">
+                    <form id="myForm6">
+                        <div class="form-group">
+                            <label for="name">Workshop Title</label>
+                            <input type="text" id="workshoptitle" name="workshoptitle" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Date</label>
+                            <input type="date" id="date" name="date" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name">Mode ofWorkshop</label>
+                            <input type="text" id="modeofworkshop" name="modeofworkshop" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Location</label>
+                            <input type="text" id="location" name="location" required>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Submit</button>
+                    </form>
+                </div>
+
+
+            </div>
+            <!-- Foreign visit -->
+            <div class="report-container7">
+                <div class="report-header">
+                    <h1 class="recent-Articles">Foreign Visits</h1>
+                    <button class="view">Add Data</button>
+                </div>
+
+                <div class="form-container">
+                    <form id="myForm7">
+                        <div class="form-group">
+                            <label for="email">Date</label>
+                            <input type="date" id="date" name="date" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Location</label>
+                            <input type="text" id="location" name="location" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Cause</label>
+                            <textarea id="cause" name="cause" rows="4" required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Submit</button>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- Other achievemet -->
+            <div class="report-container8">
+                <div class="report-header">
+                    <h1 class="recent-Articles">Other Achievements</h1>
+                    <button class="view">Add Data</button>
+                </div>
+
+                <div class="form-container">
+                    <form id="myForm8">
+                        <div class="form-group">
+                            <label for="name">Sanctioning Body:</label>
+                            <input type="text" id="sanctioningbody" name="venue" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Title</label>
+                            <input type="text" id="title" name="date" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="age">Fund:</label>
+                            <input type="text" id="fund" name="organisation" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Start-Date</label>
+                            <input type="date" id="sdate" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">End-Date</label>
+                            <input type="date" id="edate" name="date" required>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Submit</button>
+                    </form>
+                </div>
+
+
+            </div>
         </div>
-    </div>
     </div>
 
     <script>
@@ -670,6 +709,14 @@
 
         function closeForm() {
             document.getElementById("myForm_a").style.display = "none";
+        }
+
+        function openForm() {
+            document.getElementById("myForm_b").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("myForm_b").style.display = "none";
         }
     </script>
 
