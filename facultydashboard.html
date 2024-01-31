@@ -13,6 +13,9 @@
   <link rel="stylesheet" href="css/home.css">
   <link rel="stylesheet" href="css/footer.css">
   <link rel="stylesheet" href="css/glform.css">
+  <link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
+  <link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
+  <script src="js/modernizr.js"></script> <!-- Modernizr -->
 
   <style>
     .main-body {
@@ -147,7 +150,7 @@
       width: 83vw;
       height: 61vw;
       z-index: 9999999999;
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(12px);
       display: none;
     }
 
@@ -346,10 +349,12 @@
               <h3>Other Achievements</h3>
             </div>
 
-            <div class="nav-option logout">
-              <img src="https://icons.veryicon.com/png/o/internet--web/website-icons/logout-8.png" class="nav-img"
-                alt="logout">
-              <h3>Logout</h3>
+            <div class="nav-option">
+              <div class="cd-popup-trigger logout">
+                <img src="https://icons.veryicon.com/png/o/internet--web/website-icons/logout-8.png" class="nav-img"
+                  alt="logout">
+                <h3>Logout</h3>
+              </div>
             </div>
 
           </div>
@@ -364,8 +369,8 @@
         <div class="main">
 
           <div class="report-container0">
-            <p id="username" class="name">Hey! User<span></span></p>
             <div class="report-header">
+              <p id="username" class="name">Hey! User<span></span></p>
               <button class="open-button view" onclick="openFormEdit()">Edit Profile</button>
             </div>
 
@@ -420,7 +425,7 @@
                   <label for="email">Address: </label>
                   <textarea id="theme" name="theme" rows="4" cols="50" required></textarea>
                 </div>
-                
+
 
                 <button type="submit" class="submit-btn">Submit</button>
                 <button type="button" class="btn cancel" onclick="closeFormEdit()">Close</button>
@@ -429,8 +434,8 @@
           </div>
           <!-- Guest lecture -->
           <div class="report-container1">
-            <p id="username" class="name">Hey! User<span></span></p>
             <div class="report-header">
+              <p id="username" class="name">Hey! User<span></span></p>
               <button class="open-button view" onclick="openForm1()">Add Data</button>
               <!-- <button class="open-button view" onclick="openForm()">Add Data</button> -->
             </div>
@@ -487,8 +492,8 @@
 
           <!-- Projects -->
           <div class="report-container2">
-            <p id="username" class="name">Hey! User<span></span></p>
             <div class="report-header">
+              <p id="username" class="name">Hey! User<span></span></p>
               <button class="open-button view" onclick="openForm2()">Add Data</button>
             </div>
 
@@ -548,8 +553,8 @@
           </div>
 
           <div class="report-container9">
-            <p id="username" class="name">Hey! User<span></span></p>
             <div class="report-header">
+              <p id="username" class="name">Hey! User<span></span></p>
               <button class="open-button view" onclick="openForm9()">Add Data</button>
             </div>
 
@@ -611,8 +616,8 @@
 
           <!-- journal -->
           <div class="report-container3">
-            <p id="username" class="name">Hey! User<span></span></p>
             <div class="report-header">
+              <p id="username" class="name">Hey! User<span></span></p>
               <button class="open-button view" onclick="openForm3()">Add Data</button>
             </div>
 
@@ -662,8 +667,8 @@
 
           <!-- Books published -->
           <div class="report-container4">
-            <p id="username" class="name">Hey! User<span></span></p>
             <div class="report-header">
+              <p id="username" class="name">Hey! User<span></span></p>
               <button class="open-button view" onclick="openForm4()">Add Data</button>
             </div>
 
@@ -719,8 +724,8 @@
 
           <!-- Conferences -->
           <div class="report-container5">
-            <p id="username" class="name">Hey! User<span></span></p>
             <div class="report-header">
+              <p id="username" class="name">Hey! User<span></span></p>
               <button class="open-button view" onclick="openForm5()">Add Data</button>
             </div>
 
@@ -776,8 +781,8 @@
 
           <!-- Workshop organised -->
           <div class="report-container6">
-            <p id="username" class="name">Hey! User<span></span></p>
             <div class="report-header">
+              <p id="username" class="name">Hey! User<span></span></p>
               <button class="open-button view" onclick="openForm6()">Add Data</button>
             </div>
 
@@ -840,8 +845,8 @@
           </div>
           <!-- Foreign visit -->
           <div class="report-container7">
-            <p id="username" class="name">Hey! User<span></span></p>
             <div class="report-header">
+              <p id="username" class="name">Hey! User<span></span></p>
               <button class="open-button view" onclick="openForm7()">Add Data</button>
             </div>
 
@@ -890,8 +895,8 @@
 
           <!-- Other achievemet -->
           <div class="report-container8">
-            <p id="username" class="name">Hey! User<span></span></p>
             <div class="report-header">
+              <p id="username" class="name">Hey! User<span></span></p>
               <button class="open-button view" onclick="openForm8()">Add Data</button>
             </div>
 
@@ -953,22 +958,18 @@
       </div>
     </div>
   </div>
+
+  <div class="cd-popup" role="alert">
+    <div class="cd-popup-container">
+      <p>Are you sure you want to logout?</p>
+      <ul class="cd-buttons">
+        <li><a href="index.html">Yes</a></li>
+        <li><a href="facultydashboard.html">No</a></li>
+      </ul>
+      <a href="#0" class="cd-popup-close img-replace">Close</a>
+    </div> <!-- cd-popup-container -->
+  </div> <!-- cd-popup -->
   <div class="footer-main"></div>
-
-
-  <!-- nav-bottom -->
-  <!-- <div class="nav-bottom">
-    <form class="example" action="action_page.php">
-      <input type="text" placeholder="Search.." name="search">
-      <button type="submit"><i class="fa fa-search"></i></button>
-    </form>
-  </div> -->
-
-  <!-- <div class="header-name">
-    <div id="datetime"></div>
-    <p id="username" class="name">Hey! User<span></span></p>
-  </div> -->
-
 
 
   <script>
@@ -1078,6 +1079,8 @@
   <script src="js/home.js"></script>
   <script src="js/footer.js"></script>
   <script src="js/facultydashboard.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="js/main.js"></script> <!-- Resource jQuery -->
   <script src="js/FD/fdgl.js"></script>
 
 

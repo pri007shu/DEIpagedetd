@@ -35,12 +35,12 @@ body {
     font-size: 3vw;
 }
 
-.size{
+.size {
     font-size: 1.5vw !important;
     margin-left: 3vw !important;
 }
 
-.size2{
+.size2 {
     font-size: 1vw !important;
     font-weight: bold;
 }
@@ -170,7 +170,7 @@ body {
 }
 
 .nav {
-    height: 115vh;
+    height: 65vw;
     width: 250px;
     background: #cbc9c9;
     position: absolute;
@@ -185,7 +185,7 @@ body {
 }
 
 .navcontainer {
-    height: calc(122vh - 70px);
+    height: 65vw;
     width: 250px;
     position: relative;
     overflow-y: scroll;
@@ -588,8 +588,10 @@ h3 {
     justify-content: center;
     background-color: #fff;
     border-radius: 10px;
-    padding: 60px; /* Increase the padding */
-    width: 75vw; /* Increase the width */
+    padding: 60px;
+    /* Increase the padding */
+    width: 75vw;
+    /* Increase the width */
     min-height: 40vw;
     position: relative;
     overflow: hidden;
@@ -616,8 +618,10 @@ h3 {
 }
 
 .user-card-img img {
-    width: 22vw !important; /* Increase the width */
-    height: 25vw; /* Increase the height */
+    width: 22vw !important;
+    /* Increase the width */
+    height: 25vw;
+    /* Increase the height */
     object-fit: cover;
     margin-left: -1vw;
     margin-right: 2vw;
@@ -685,7 +689,7 @@ h3 {
     }
 }
 
-#institute{
+#institute {
     margin-top: 7vw;
     font-weight: bold;
     background-color: #000000;
@@ -695,11 +699,41 @@ h3 {
     border-radius: 8px;
 }
 
-.form-group2{
+.form-group2 {
     display: flex;
     margin-bottom: 2vw;
 }
 
-.form-group2 label{
+.form-group2 label {
     margin-right: 3vw;
+}
+
+.cd-popup {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s 0s, visibility 0s 0.3s;
+}
+
+.cd-popup.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s 0s, visibility 0s 0s;
+}
+
+.cd-popup-container {
+    transform: translateY(-40px);
+    transition-property: transform;
+    transition-duration: 0.3s;
+}
+
+.is-visible .cd-popup-container {
+    transform: translateY(0);
+}
+
+.logout{
+    display: flex;
+}
+
+.logout h3{
+    margin-left: 1.5vw;
 }
