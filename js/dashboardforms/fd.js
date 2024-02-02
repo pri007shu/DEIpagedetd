@@ -297,3 +297,16 @@
             alert("Please sign in before submitting the form.");
           }
         });
+
+
+
+
+
+
+
+
+
+
+        // profile card
+
+       
