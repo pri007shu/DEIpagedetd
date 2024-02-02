@@ -649,6 +649,7 @@ h3 {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 2vw;
     z-index: 3;
 }
 
@@ -662,17 +663,20 @@ h3 {
     margin-right: 2vw;
     border-radius: 5vw;
     border: 5px solid black;
+    margin-top: 1vw;
 }
 
 .user-card-info {
     text-align: center;
+    margin-top: 5vw;
 }
 
 .user-card-info h2 {
-    font-size: 5vw;
+    font-size: 3vw;
     margin: 0;
-    margin-bottom: 5vw;
-    margin-left: -12vw;
+   
+   
+    margin-left: 28vw;
 }
 
 .user-card-info p {
@@ -681,6 +685,7 @@ h3 {
 }
 
 .user-card-info p span {
+   
     font-weight: 700;
     margin-right: 10px;
 }
@@ -725,13 +730,14 @@ h3 {
 }
 
 #institute {
-    margin-top: 7vw;
+   
     font-weight: bold;
     background-color: #000000;
     color: white;
     text-align: center;
     margin-left: -11vw;
     border-radius: 8px;
+    margin-top: 6vw;
 }
 
 .form-group2 {

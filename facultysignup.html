@@ -45,6 +45,18 @@
                         <input type="text" id="email" name="email" required>
                     </div>
                     <div class="form-group inputs">
+                        <label class="label1" for="text">Designation:</label>
+                        <input type="text" id="designation" name="designation" required>
+                    </div>
+                    <div class="form-group inputs">
+                        <label class="label1" for="text">Department:</label>
+                        <input type="text" id="department" name="department" required>
+                    </div>
+                    <div class="form-group inputs">
+                        <label class="label1" for="text">Address:</label>
+                        <input type="text" id="address" name="address" required>
+                    </div>
+                    <div class="form-group inputs">
                         <label class="label2" for="password">Password:</label>
                         <input type="password" id="password" name="password" required>
                     </div>
@@ -96,6 +108,9 @@
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirmpassword').value;
+            const designation = document.getElementById('designation').value;
+            const department = document.getElementById('department').value;
+            const address = document.getElementById('address').value;
 
             // Check if passwords match
             if (password !== confirmPassword) {
@@ -115,6 +130,10 @@
                         name: name,
                         employeeNo: employeeNo,
                         email: email,
+                        department: designation,
+                        department: department,
+                        address: address
+
                     })
                         .then(() => {
                             console.log('User data saved in Firestore');
