@@ -77,6 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
         closeForm7();
         closeForm8();
         closeForm9();
+        closeFormEdit();
     }
 
     // Hide all report containers except reportContainer0 on page load
@@ -271,3 +272,13 @@ function closeForm9() {
     document.getElementById("myForm_i").style.display = "none";
     blur.style.display = "none";
 }
+
+function openFormEdit() {
+    document.getElementById("myForm_edit").style.display = "block";
+    blur.style.display = "block";
+  }
+
+  function closeFormEdit() {
+    document.getElementById("myForm_edit").style.display = "none";
+    blur.style.display = "none";
+  }
