@@ -28,7 +28,9 @@ function updateUserName() {
             document.getElementById('username9').innerText = "Hey! " + userName;
             document.getElementById("name1").innerText = userName
               document.getElementById("email").innerText = userEmployee 
-              document.getElementById("employeeno").innerText = userEmail 
+              document.getElementById("emailform").innerText = userEmployee 
+              document.getElementById("employeeno").innerText = userEmail
+              document.getElementById("employeenoform").innerText = userEmail 
               document.getElementById("designation").innerText = userDesignation
               document.getElementById("department").innerText = userDepartment
               document.getElementById("address").innerText = userAddress
