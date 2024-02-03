@@ -311,6 +311,8 @@ h3 {
 .view {
     height: 35px;
     width: 90px;
+    
+    
     border-radius: 8px;
     background-color: #5500cb;
     color: white;
@@ -676,7 +678,7 @@ h3 {
     margin: 0;
    
    
-    margin-left: 28vw;
+    margin-left: 10vw;
 }
 
 .user-card-info p {
@@ -737,7 +739,7 @@ h3 {
     text-align: center;
     margin-left: -11vw;
     border-radius: 8px;
-    margin-top: 6vw;
+    margin-top: 13vw;
 }
 
 .form-group2 {

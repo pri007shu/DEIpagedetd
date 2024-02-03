@@ -142,7 +142,7 @@
 
     .title {
       color: grey;
-      font-size: 15px;
+      font-size: 18px;
     }
 
     .blur-background {
@@ -182,14 +182,13 @@
       color: #333;
     }
 
-    .name1 {
+    .name {
       position: absolute;
-      left: 5vw;
-      top: 3vw;
+      left: 2vw;
+      top: 1vw;
       z-index: 9999999999999999;
       font-weight: bold;
     }
-  </style>
   </style>
   <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-auth.js"></script>
@@ -223,6 +222,10 @@
               const userName = doc.data().name;
               const userEmail = doc.data().email;
               const userEmployee = doc.data().employeeNo;
+              const userDesignation = doc.data().designation;
+              const userDepartment = doc.data().department;
+              const userAddress = doc.data().address;
+
 
               document.getElementById('username').innerText = "Hey! " + userName;
               document.getElementById('username1').innerText = "Hey! " + userName;
@@ -237,6 +240,9 @@
               document.getElementById("name1").innerText = userName
                 document.getElementById("email").innerText = userEmployee 
                 document.getElementById("employeeno").innerText = userEmail 
+                document.getElementById("designation").innerText = userDesignation
+                document.getElementById("department").innerText = userDepartment
+                document.getElementById("address").innerText = userAddress
             } else {
               console.error('User data not found in Firestore');
             }
