@@ -10,6 +10,7 @@ firebase.auth().onAuthStateChanged(user => {
   }
 });
 
+// PROFILE PAGE
 
 const form = document.getElementById('myForm');
 
@@ -39,7 +40,7 @@ form.addEventListener('submit', async (e) => {
     }
 });
 
-
+// GUEST LECTURE
 
   document.getElementById("myForm1").addEventListener("submit", function(event) {
     event.preventDefault();
@@ -58,7 +59,7 @@ form.addEventListener('submit', async (e) => {
     })
     .then(function(docRef) {
       console.log("Document written with ID: ", docRef.id);
-      updateTable(); // Update the table after submission
+      updateTable1(); // Update the table after submission
     })
     .catch(function(error) {
       console.error("Error adding document: ", error);
@@ -71,7 +72,7 @@ form.addEventListener('submit', async (e) => {
 
 
   // Function to update the table with Firestore data
-  function updateTable() {
+  function updateTable1() {
     var table = document.getElementById("dataTable1");
     table.innerHTML = "<tr><th>Venue</th><th>Date</th><th>Organisation</th><th>Theme</th></tr>";
   
@@ -97,7 +98,143 @@ form.addEventListener('submit', async (e) => {
     if (user) {
       // User is signed in.
       console.log("User is logged in:", user.uid);
-      updateTable(); // Call updateTable when user is logged in
+      updateTable1(); // Call updateTable when user is logged in
+    } else {
+      // User is signed out.
+      console.log("User is not logged in.");
+    }
+  });
+
+
+  // PROJECTS SANCTIONED
+
+  document.getElementById("myForm2").addEventListener("submit", function(event) {
+    event.preventDefault();
+    const sanctioningbody = document.getElementById("sanctioningbody").value;
+    const title = document.getElementById("title").value;
+    const fund = document.getElementById("fund").value;
+    const sdate = document.getElementById("sdate").value;
+    const edate = document.getElementById("edate").value;
+    const userId = firebase.auth().currentUser.uid;
+  
+    // Add data to Firestore
+    db.collection("faculty").doc(userId).collection("fdProjectsSanctioned").add({
+      sanctioningbody: sanctioningbody,
+      title: title,
+      fund: fund,
+      sdate: sdate,
+      edate: edate
+    })
+    .then(function(docRef) {
+      console.log("Document written with ID: ", docRef.id);
+      updateTable2(); // Update the table after submission
+    })
+    .catch(function(error) {
+      console.error("Error adding document: ", error);
+    });
+  
+    // Clear the form
+    document.getElementById("myForm2").reset();
+  });
+  
+
+
+  // Function to update the table with Firestore data
+  function updateTable2() {
+    var table = document.getElementById("dataTable2");
+    table.innerHTML = "<tr><th>Sanctioning Body</th><th>Title</th><th>Fund</th><th>Start-Date</th><th>End-Date</th></tr>";
+  
+    var user = firebase.auth().currentUser;
+    if (user) {
+      db.collection("faculty").doc(user.uid).collection("fdProjectsSanctioned").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          var data = doc.data();
+          var row = table.insertRow(-1);
+          row.insertCell(0).innerHTML = data.sanctioningbody;
+          row.insertCell(1).innerHTML = data.title;
+          row.insertCell(2).innerHTML = data.fund;
+          row.insertCell(3).innerHTML = data.sdate;
+          row.insertCell(4).innerHTML = data.edate;
+        });
+      });
+    } else {
+      console.error("User not logged in.");
+    }
+  }
+  
+  // Listen for authentication state changes
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // User is signed in.
+      console.log("User is logged in:", user.uid);
+      updateTable2(); // Call updateTable when user is logged in
+    } else {
+      // User is signed out.
+      console.log("User is not logged in.");
+    }
+  });
+
+  // PATENTS 
+
+  document.getElementById("myForm3a").addEventListener("submit", function(event) {
+    event.preventDefault();
+    const tittle = document.getElementById("tittle").value;
+    const appnumber = document.getElementById("appnumber").value;
+    const status = document.getElementById("status").value;
+    const fdate = document.getElementById("fdate").value;
+    const validityupto = document.getElementById("validityupto").value;
+    const userId = firebase.auth().currentUser.uid;
+  
+    // Add data to Firestore
+    db.collection("faculty").doc(userId).collection("fdPatents").add({
+      tittle: tittle,
+      appnumber: appnumber,
+      status: status,
+      fdate: fdate,
+      validityupto: validityupto
+    })
+    .then(function(docRef) {
+      console.log("Document written with ID: ", docRef.id);
+      updateTable3(); // Update the table after submission
+    })
+    .catch(function(error) {
+      console.error("Error adding document: ", error);
+    });
+  
+    // Clear the form
+    document.getElementById("myForm3a").reset();
+  });
+  
+
+
+  // Function to update the table with Firestore data
+  function updateTable3() {
+    var table = document.getElementById("dataTable3");
+    table.innerHTML = "<tr><th>Title</th><th>Application Number</th><th>Status</th><th>Date</th><th>ValidityUpto</th></tr>";
+    var user = firebase.auth().currentUser;
+    if (user) {
+      db.collection("faculty").doc(user.uid).collection("fdPatents").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          var data = doc.data();
+          var row = table.insertRow(-1);
+          row.insertCell(0).innerHTML = data.tittle;
+          row.insertCell(1).innerHTML = data.appnumber;
+          row.insertCell(2).innerHTML = data.status;
+          row.insertCell(3).innerHTML = data.fdate;
+          row.insertCell(4).innerHTML = data.validityupto;
+        });
+      });
+    } else {
+      console.error("User not logged in.");
+    }
+  }
+  
+  // Listen for authentication state changes
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // User is signed in.
+      console.log("User is logged in:", user.uid);
+      updateTable3(); // Call updateTable when user is logged in
     } else {
       // User is signed out.
       console.log("User is not logged in.");
