@@ -350,6 +350,8 @@
               </form>
             </div>
           </div>
+
+
           <!-- Guest lecture -->
           <div class="report-container1">
             <div class="report-header">
@@ -402,6 +404,8 @@
             </div>
           </div>
 
+
+
           <!-- Projects -->
           <div class="report-container2">
             <div class="report-header">
@@ -411,7 +415,7 @@
 
             <div class="table-container">
               <form id="myTable2">
-                <table>
+                <table id="dataTable2">
                   <tr>
                     <th>Sanctioning Body</th>
                     <th>Title</th>
@@ -419,13 +423,7 @@
                     <th>Start-Date</th>
                     <th>End-Date</th>
                   </tr>
-                  <tr>
-                    <td>none</td>
-                    <td>none</td>
-                    <td>none</td>
-                    <td>none</td>
-                    <td>none</td>
-                  </tr>
+                 
                 </table>
               </form>
             </div>
@@ -463,8 +461,11 @@
               </form>
             </div>
           </div>
+
+           <!-- PATENTS -->
+
           
-          <!-- Patents -->
+
           <div class="report-container9">
             <div class="report-header">
               <p id="username3" class="name">Hey! User<span></span></p>
@@ -473,52 +474,47 @@
 
             <div class="table-container">
               <form id="myTable9">
+                <table id="dataTable3">
                 <table>
                   <tr>
-                    <th>Title</th>
+                    <!-- <th>Title</th>
                     <th>Application Number</th>
                     <th>Status</th>
                     <th>Date</th>
                     <th>Validity Upto</th>
-                    <!-- should be only filled when status granted -->
-                  </tr>
-                  <tr>
-                    <td>none</td>
-                    <td>none</td>
-                    <td>none</td>
-                    <td>none</td>
-                    <td>none</td>
-                  </tr>
+                 
+                  </tr> -->
+                
                 </table>
               </form>
             </div>
 
 
             <div class="form-popup" id="myForm_i">
-              <form class="form-container" id="myForm" id="myForm8">
+              <form class="form-container"  id="myForm3a">
 
                 <div class="form-group">
-                  <label for="name">Title:</label>
-                  <input type="text" id="sanctioningbody" name="venue" required>
+                  <label for="status">Title:</label>
+                  <input type="text" id="tittle" name="status" required>
                 </div>
 
                 <div class="form-group">
                   <label for="email">Application Number:</label>
-                  <input type="number" id="title" name="date" required>
+                  <input type="number" id="appnumber" name="appnumber" required>
                 </div>
 
                 <div class="form-group">
-                  <label for="age">Status:</label>
-                  <input type="text" id="fund" name="organisation" required>
+                  <label for="status">Status:</label>
+                  <input type="text" id="status" name="status" required>
                 </div>
 
                 <div class="form-group">
-                  <label for="email">Date</label>
-                  <input type="date" id="sdate" name="date" required>
+                  <label for="fdate">Date</label>
+                  <input type="date" id="fdate" name="validityupto" required>
                 </div>
                 <div class="form-group">
-                  <label for="email">Validity Upto</label>
-                  <input type="text" id="edate" name="date" required>
+                  <label for="date">Validity Upto</label>
+                  <input type="date" id="validityupto" name="validityupto" required>
                 </div>
 
                 <button type="submit" class="submit-btn">Submit</button>
@@ -553,7 +549,7 @@
 
 
             <div class="form-popup" id="myForm_c">
-              <form class="form-container" id="myForm3">
+              <form class="form-container" id="myForm4">
 
                 <div class="form-group">
                   <label for="email">Title</label>
@@ -605,7 +601,7 @@
             </div>
 
             <div class="form-popup" id="myForm_d">
-              <form class="form-container" id="myForm4">
+              <form class="form-container" id="myForm5">
 
                 <div class="form-group">
                   <label for="email">Title</label>
@@ -663,7 +659,7 @@
 
 
             <div class="form-popup" id="myForm_e">
-              <form class="form-container" id="myForm5">
+              <form class="form-container" id="myForm6">
 
                 <div class="form-group">
                   <label for="email">Date</label>
@@ -722,7 +718,7 @@
 
 
             <div class="form-popup" id="myForm_f">
-              <form class="form-container" id="myForm" id="myForm6">
+              <form class="form-container"  id="myForm7">
 
                 <div class="form-group">
                   <label for="name">Workshop Title</label>
@@ -782,7 +778,7 @@
 
 
             <div class="form-popup" id="myForm_g">
-              <form class="form-container" id="myForm" id="myForm7">
+              <form class="form-container"  id="myForm8">
 
                 <div class="form-group">
                   <label for="email">Date</label>
@@ -836,7 +832,7 @@
 
 
             <div class="form-popup" id="myForm_h">
-              <form class="form-container" id="myForm" id="myForm8">
+              <form class="form-container"  id="myForm9">
 
                 <div class="form-group">
                   <label for="name">Sanctioning Body:</label>
