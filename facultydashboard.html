@@ -297,7 +297,8 @@
                   <p><span>Employee No:</span> <span id="email">DEI123456</span></p>
                   <p><span>Designation:</span> <span id="designation">Professsor</span></p>
                   <p><span>Department:</span> <span id="department">Web Developer</span></p>
-                  <p><span>Address:</span> <span id="address">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span></p>
+                  <p><span>Address:</span> <span id="address">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span></p>
                   <p id="institute">Dayalbagh Educational Institute,<br> Dayalbagh, Agra-282005, Uttar Pradesh, INDIA
                   </p>
                 </div>
@@ -314,13 +315,18 @@
                 </div>
 
                 <div class="form-group2">
+                  <label for="name">Photo: </label>
+                  <input type="file" id="myFile" name="filename">
+                </div>
+
+                <div class="form-group2">
                   <label for="email">Email: </label>
-                  <span id="employeenoform"class="email size2" >example@example.com</span>
+                  <span id="employeenoform" class="email size2">example@example.com</span>
                 </div>
 
                 <div class="form-group2">
                   <label for="number">Employee No:</label>
-                  <span id="emailform"class="EmpNO size2">DEI123456</span>
+                  <span id="emailform" class="EmpNO size2">DEI123456</span>
                 </div>
 
                 <div class="form-group2">
@@ -339,8 +345,8 @@
                 </div>
 
 
-                <button type="submit" class="submit-btn">Submit</button>
-                <button type="button" class="btn cancel" onclick="closeFormEdit()">Close</button>
+                <button  type="submit" class="submit-btn">Submit</button>
+                <button id="reloadButton" type="button" class="btn cancel" onclick="closeFormEdit()">Close</button>
               </form>
             </div>
           </div>
@@ -352,18 +358,18 @@
               <!-- <button class="open-button view" onclick="openForm()">Add Data</button> -->
             </div>
 
-              <div class="table-container">
-                <form id="myTable1">
-                  <table id="dataTable1">
-                    <tr>
-                      <th>Venue</th>
-                      <th>Date</th>
-                      <th>Organisation</th>
-                      <th>Theme</th>
-                    </tr>
-                  </table>
-                </form>
-              </div>
+            <div class="table-container">
+              <form id="myTable1">
+                <table id="dataTable1">
+                  <tr>
+                    <th>Venue</th>
+                    <th>Date</th>
+                    <th>Organisation</th>
+                    <th>Theme</th>
+                  </tr>
+                </table>
+              </form>
+            </div>
 
             <div class="form-popup" id="myForm_a">
               <form class="form-container" id="myForm1">
@@ -457,7 +463,8 @@
               </form>
             </div>
           </div>
-
+          
+          <!-- Patents -->
           <div class="report-container9">
             <div class="report-header">
               <p id="username3" class="name">Hey! User<span></span></p>
@@ -978,6 +985,12 @@
       document.getElementById("myForm_i").style.display = "none";
       blur.style.display = "none";
     }
+  </script>
+  <script>
+    // JavaScript code to handle the click event and trigger a page reload
+    document.getElementById('reloadButton').addEventListener('click', function () {
+      location.reload();
+    });
   </script>
   <!-- footer -->
   <script src="./index.js"></script>

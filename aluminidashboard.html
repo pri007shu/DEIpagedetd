@@ -195,95 +195,8 @@
   <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-firestore.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  <script>
-    // Replace with your Firebase project configuration
-    var firebaseConfig = {
-      apiKey: "AIzaSyCu3Jlxe8Ao3SphePEMG6qXE1f1_YYjb7o",
-      authDomain: "deipage-detd.firebaseapp.com",
-      projectId: "deipage-detd",
-      storageBucket: "deipage-detd.appspot.com",
-      messagingSenderId: "830390951653",
-      appId: "1:830390951653:web:92ad43a7a52c844c18be0c",
-      measurementId: "G-QFX4F832FE"
-    };
-
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    function updateDateTime() {
-      var now = new Date();
-      var date = now.toDateString();
-      var time = now.toLocaleTimeString();
-      var seconds = now.getSeconds();
-
-      document.getElementById('datetime').innerHTML = date + ' ' + time;
-    }
-
-    function updateUserName() {
-      // Check if there is a current user
-      const user = firebase.auth().currentUser;
-      if (user) {
-        // Fetch user data from Firestore and update the name
-        const userId = user.uid;
-
-        firebase.firestore().collection('faculty').doc(userId).get()
-          .then((doc) => {
-            if (doc.exists) {
-              const userName = doc.data().name;
-              document.getElementById('username').innerText = "Hey! " + userName;
-            } else {
-              console.error('User data not found in Firestore');
-            }
-          })
-          .catch((error) => {
-            console.error('Error fetching user data from Firestore:', error);
-          });
-      } else {
-        console.error('No authenticated user');
-      }
-    }
-
-    setInterval(updateDateTime, 1000); // Update every 1000 milliseconds (1 second)
-    // Add a listener for authentication state change
-    firebase.auth().onAuthStateChanged(function (user) {
-      if (user) {
-        updateUserName(); // Update user name on page load and on authentication state change
-      }
-    });
-
-
-  </script>
-  <script>
-    const auth = firebase.auth();
-    const db = firebase.firestore();
-
-    // Function to fetch user data and update profile
-    function fetchUserProfile(userId) {
-      const userDocRef = db.collection('faculty').doc(userId);
-      userDocRef.get().then((doc) => {
-        if (doc.exists) {
-          const userData = doc.data();
-          // Update the HTML with the user's name
-          document.getElementById('user-name').textContent = userData.name;
-        } else {
-          console.log("No such document!");
-        }
-      }).catch((error) => {
-        console.log("Error getting document:", error);
-      });
-    }
-
-    // Check if user is logged in
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        // User is signed in, get the user's ID and fetch profile
-        const userId = user.uid;
-        fetchUserProfile(userId);
-      } else {
-        // No user is signed in.
-        console.log("No user signed in.");
-      }
-    });
-  </script>
+  <script src="js/FD/fdfirebase.js"></script>
+  <script src="js/FD/firebasefetching.js"></script>
 </head>
 
 <body>
@@ -379,80 +292,80 @@
                   <img id="profile-img" src="https://cdn-icons-png.flaticon.com/512/4121/4121064.png" alt="">
                 </div>
                 <div class="user-card-info">
-                  <h2 class="title">User</h2>
-                  <p><span>Email:</span> example@example.com</p>
-                  <p><span>Employee No:</span> DEI123456</p>
-                  <p><span>Designation:</span> Professsor</p>
-                  <p><span>Department:</span> Web Developer</p>
-                  <p><span>Address:</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua.</p>
+                  <h2 class="name1" id="name1">User</h2>
+                  <p><span>Email:</span> <span id="employeeno">example@example.com</span></p>
+                  <p><span>Employee No:</span> <span id="email">DEI123456</span></p>
+                  <p><span>Designation:</span> <span id="designation">Professsor</span></p>
+                  <p><span>Department:</span> <span id="department">Web Developer</span></p>
+                  <p><span>Address:</span> <span id="address">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span></p>
                   <p id="institute">Dayalbagh Educational Institute,<br> Dayalbagh, Agra-282005, Uttar Pradesh, INDIA
                   </p>
                 </div>
               </div>
             </div>
 
+
             <div class="form-popup" id="myForm_edit">
-              <form class="form-container" id="myForm" id="myForm8">
+              <form class="form-container" id="myForm">
 
                 <div class="form-group2">
                   <label for="name">Name: </label>
-                  <span class="name size">User</span>
+                  <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group2">
+                  <label for="name">Photo: </label>
+                  <input type="file" id="myFile" name="filename">
                 </div>
 
                 <div class="form-group2">
                   <label for="email">Email: </label>
-                  <span class="email size2">example@example.com</span>
+                  <span id="employeenoform" class="email size2">example@example.com</span>
                 </div>
 
                 <div class="form-group2">
-                  <label for="no">Employee No:</label>
-                  <span class="EmpNO size2">DEI123456</span>
+                  <label for="number">Employee No:</label>
+                  <span id="emailform" class="EmpNO size2">DEI123456</span>
                 </div>
 
                 <div class="form-group2">
-                  <label for="email">Designation: </label>
-                  <input type="text" id="designation" name="text" required>
+                  <label for="designation">Designation: </label>
+                  <input type="text" id="designation" name="designation" required>
                 </div>
 
                 <div class="form-group2">
-                  <label for="email">Department: </label>
-                  <input type="text" id="department" name="text" required>
+                  <label for="department">Department: </label>
+                  <input type="text" id="department" name="department" required>
                 </div>
 
                 <div class="form-group2">
-                  <label for="email">Address: </label>
-                  <textarea id="theme" name="theme" rows="4" cols="50" required></textarea>
+                  <label for="address">Address: </label>
+                  <input type="text" id="address" name="address" required>
                 </div>
 
 
-                <button type="submit" class="submit-btn">Submit</button>
-                <button type="button" class="btn cancel" onclick="closeFormEdit()">Close</button>
+                <button  type="submit" class="submit-btn">Submit</button>
+                <button id="reloadButton" type="button" class="btn cancel" onclick="closeFormEdit()">Close</button>
               </form>
             </div>
           </div>
           <!-- Guest lecture -->
           <div class="report-container1">
             <div class="report-header">
-              <p id="username" class="name">Hey! User<span></span></p>
+              <p id="username1" class="name">Hey! User<span></span></p>
               <button class="open-button view" onclick="openForm1()">Add Data</button>
               <!-- <button class="open-button view" onclick="openForm()">Add Data</button> -->
             </div>
 
             <div class="table-container">
               <form id="myTable1">
-                <table>
+                <table id="dataTable1">
                   <tr>
                     <th>Venue</th>
                     <th>Date</th>
                     <th>Organisation</th>
                     <th>Theme</th>
-                  </tr>
-                  <tr>
-                    <td>none</td>
-                    <td>none</td>
-                    <td>none</td>
-                    <td>none</td>
                   </tr>
                 </table>
               </form>
@@ -492,7 +405,7 @@
           <!-- Projects -->
           <div class="report-container2">
             <div class="report-header">
-              <p id="username" class="name">Hey! User<span></span></p>
+              <p id="username2" class="name">Hey! User<span></span></p>
               <button class="open-button view" onclick="openForm2()">Add Data</button>
             </div>
 
@@ -553,7 +466,7 @@
 
           <div class="report-container9">
             <div class="report-header">
-              <p id="username" class="name">Hey! User<span></span></p>
+              <p id="username3" class="name">Hey! User<span></span></p>
               <button class="open-button view" onclick="openForm9()">Add Data</button>
             </div>
 
@@ -616,7 +529,7 @@
           <!-- journal -->
           <div class="report-container3">
             <div class="report-header">
-              <p id="username" class="name">Hey! User<span></span></p>
+              <p id="username4" class="name">Hey! User<span></span></p>
               <button class="open-button view" onclick="openForm3()">Add Data</button>
             </div>
 
@@ -667,7 +580,7 @@
           <!-- Books published -->
           <div class="report-container4">
             <div class="report-header">
-              <p id="username" class="name">Hey! User<span></span></p>
+              <p id="username5" class="name">Hey! User<span></span></p>
               <button class="open-button view" onclick="openForm4()">Add Data</button>
             </div>
 
@@ -724,7 +637,7 @@
           <!-- Conferences -->
           <div class="report-container5">
             <div class="report-header">
-              <p id="username" class="name">Hey! User<span></span></p>
+              <p id="username6" class="name">Hey! User<span></span></p>
               <button class="open-button view" onclick="openForm5()">Add Data</button>
             </div>
 
@@ -781,7 +694,7 @@
           <!-- Workshop organised -->
           <div class="report-container6">
             <div class="report-header">
-              <p id="username" class="name">Hey! User<span></span></p>
+              <p id="username7" class="name">Hey! User<span></span></p>
               <button class="open-button view" onclick="openForm6()">Add Data</button>
             </div>
 
@@ -845,7 +758,7 @@
           <!-- Foreign visit -->
           <div class="report-container7">
             <div class="report-header">
-              <p id="username" class="name">Hey! User<span></span></p>
+              <p id="username8" class="name">Hey! User<span></span></p>
               <button class="open-button view" onclick="openForm7()">Add Data</button>
             </div>
 
@@ -895,7 +808,7 @@
           <!-- Other achievemet -->
           <div class="report-container8">
             <div class="report-header">
-              <p id="username" class="name">Hey! User<span></span></p>
+              <p id="username9" class="name">Hey! User<span></span></p>
               <button class="open-button view" onclick="openForm8()">Add Data</button>
             </div>
 
@@ -1072,6 +985,12 @@
       blur.style.display = "none";
     }
   </script>
+  <script>
+    // JavaScript code to handle the click event and trigger a page reload
+    document.getElementById('reloadButton').addEventListener('click', function () {
+      location.reload();
+    });
+  </script>
   <!-- footer -->
   <script src="./index.js"></script>
   <script src="js/navdashboard.js"></script>
@@ -1080,7 +999,7 @@
   <script src="js/facultydashboard.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   <script src="js/main.js"></script> <!-- Resource jQuery -->
-  <script src="js/FD/fdgl.js"></script>
+  <script src="js/dashboardforms/fd.js"></script>
 
 
 
