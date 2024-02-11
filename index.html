@@ -7,6 +7,7 @@
     <title>DEI ENGINEERING</title>
     <link rel="icon" href="img/about122.png" type="image/x-icon">
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/searchbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-firestore.js"></script>
@@ -24,49 +25,58 @@
     const db = firebase.firestore();
 
     function search() {
-      const searchTerm = document.getElementById('searchInput').value;
-      const resultsList = document.getElementById('searchResults');
-      resultsList.innerHTML = ''; // Clear previous results
+  const searchTerm = document.getElementById('searchInput').value;
+  const resultsList = document.getElementById('searchResults');
+  resultsList.innerHTML = ''; // Clear previous results
 
-      // Search in 'students' collection
-      db.collection('students')
-        .where('rollNo', '==', searchTerm)
-        .get()
-        .then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            const data = doc.data();
-            const li = document.createElement('li');
-            li.textContent = `Student Roll No: ${data.rollNo}`;
-            resultsList.appendChild(li);
-          });
-        });
+  // Search in 'students' collection
+  db.collection('students')
+    .where('rollNo', '==', searchTerm)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <strong>Student Roll No:</strong> ${data.rollNo}<br>
+          <strong>Name:</strong> ${data.name}<br>
+          <strong>Email:</strong> ${data.email}<br>`;
+        resultsList.appendChild(li);
+      });
+    });
 
-      // Search in 'faculty' collection
-      db.collection('faculty')
-        .where('employeeNo', '==', searchTerm)
-        .get()
-        .then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            const data = doc.data();
-            const li = document.createElement('li');
-            li.textContent = `Faculty Employee No: ${data.employeeNo}`;
-            resultsList.appendChild(li);
-          });
-        });
+  // Search in 'faculty' collection
+  db.collection('faculty')
+    .where('employeeNo', '==', searchTerm)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        const li = document.createElement('li');
+        li.innerHTML = ` <strong> Faculty Employee No: </strong> ${data.employeeNo} <br> 
+        <strong> Name: </strong> ${data.name} <br> 
+        <strong> Email: </strong> ${data.email} <br> 
+        <strong> Designation: </strong> ${data.designation} <br> 
+        <strong> Department: </strong> ${data.department} <br> `;
+        resultsList.appendChild(li);
+      });
+    });
 
-      // Search in 'alumni' collection
-      db.collection('alumni')
-        .where('aadeiNo', '==', searchTerm)
-        .get()
-        .then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            const data = doc.data();
-            const li = document.createElement('li');
-            li.textContent = `Alumni AADEI No: ${data.aadeiNo}`;
-            resultsList.appendChild(li);
-          });
-        });
-    }
+  // Search in 'alumni' collection
+  db.collection('alumini')
+    .where('aadeiNo', '==', searchTerm)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        const li = document.createElement('li');
+        li.innerHTML = `  <strong> Alumni AADEI No: </strong> ${data.aadeiNo} <br> 
+        <strong> Name: </strong> ${data.name} <br> 
+        <strong> Email: </strong> ${data.email} <br>`;
+        resultsList.appendChild(li);
+      });
+    });
+}
   </script>
 </head>
 
@@ -77,9 +87,11 @@
 
      <!-- nav-bottom -->
      <div class="nav-bottom">
-        <input type="text" id="searchInput" placeholder="Search...">
-        <button onclick="search()">Search</button>
-        <ul id="searchResults"></ul>
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search numbers">
+            <button onclick="search()" class="search-button">Search</button>
+          </div>
+          <ul id="searchResults" class="search-results"></ul>
       
     </div>
     
