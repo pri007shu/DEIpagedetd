@@ -7,7 +7,77 @@
     <title>DEI ENGINEERING</title>
     <link rel="icon" href="img/about122.png" type="image/x-icon">
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/searchbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-firestore.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyCu3Jlxe8Ao3SphePEMG6qXE1f1_YYjb7o",
+  authDomain: "deipage-detd.firebaseapp.com",
+  projectId: "deipage-detd",
+  storageBucket: "deipage-detd.appspot.com",
+  messagingSenderId: "830390951653",
+  appId: "1:830390951653:web:92ad43a7a52c844c18be0c",
+  measurementId: "G-QFX4F832FE"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    function search() {
+  const searchTerm = document.getElementById('searchInput').value;
+  const resultsList = document.getElementById('searchResults');
+  resultsList.innerHTML = ''; // Clear previous results
+
+  // Search in 'students' collection
+  db.collection('students')
+    .where('rollNo', '==', searchTerm)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <strong>Student Roll No:</strong> ${data.rollNo}<br>
+          <strong>Name:</strong> ${data.name}<br>
+          <strong>Email:</strong> ${data.email}<br>`;
+        resultsList.appendChild(li);
+      });
+    });
+
+  // Search in 'faculty' collection
+  db.collection('faculty')
+    .where('employeeNo', '==', searchTerm)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        const li = document.createElement('li');
+        li.innerHTML = ` <strong> Faculty Employee No: </strong> ${data.employeeNo} <br> 
+        <strong> Name: </strong> ${data.name} <br> 
+        <strong> Email: </strong> ${data.email} <br> 
+        <strong> Designation: </strong> ${data.designation} <br> 
+        <strong> Department: </strong> ${data.department} <br> `;
+        resultsList.appendChild(li);
+      });
+    });
+
+  // Search in 'alumni' collection
+  db.collection('alumini')
+    .where('aadeiNo', '==', searchTerm)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        const li = document.createElement('li');
+        li.innerHTML = `  <strong> Alumni AADEI No: </strong> ${data.aadeiNo} <br> 
+        <strong> Name: </strong> ${data.name} <br> 
+        <strong> Email: </strong> ${data.email} <br>`;
+        resultsList.appendChild(li);
+      });
+    });
+}
+  </script>
 </head>
 
 <body>
@@ -17,10 +87,12 @@
 
      <!-- nav-bottom -->
      <div class="nav-bottom">
-        <form class="example" action="action_page.php">
-            <input type="text" placeholder="Search.." name="search">
-            <button type="submit"><i class="fa fa-search"></i></button>
-          </form>
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search numbers">
+            <button onclick="search()" class="search-button">Search</button>
+          </div>
+          <ul id="searchResults" class="search-results"></ul>
+      
     </div>
     
 
@@ -9097,6 +9169,7 @@
     <div class="footer-main"></div>
 
     <script src="js/nav.js"></script>
+    
     <script src="js/home.js"></script>
     <script src="js/footer.js"></script>
 
