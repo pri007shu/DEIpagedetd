@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, 
+				initial-scale=1.0">
+  <title>DEI ENGINEERING</title>
+  <link rel="icon" href="img/about122.png" type="image/x-icon">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/navdashboard.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/glform.css">
+  <link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
+  <link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
+  <script src="js/modernizr.js"></script> <!-- Modernizr -->
+
+  <style>
+    .main-body {
+      display: flex;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Button used to open the contact form - fixed at the bottom of the page */
+    .open-button {
+      position: relative;
+      background-color: #000 !important;
+      top: -3vw;
+      left: 71vw;
+      z-index: 9999999999999;
+      width: 100px;
+    }
+
+    /* The popup form - hidden by default */
+    .form-popup {
+      display: none;
+      position: absolute;
+      top: 118px;
+      left: 26vw;
+      border: 3px solid #f1f1f1;
+      z-index: 9;
+      z-index: 9999999999999;
+      border-radius: 10px;
+    }
+
+    /* Add styles to the form container */
+    .form-container {
+      width: 800px;
+      padding: 10px;
+      background-color: white;
+    }
+
+    /* Full-width input fields */
+    .form-container input[type=text],
+    .form-container input[type=password] {
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      border: none;
+      background: #f1f1f1;
+    }
+
+    /* When the inputs get focus, do something */
+    .form-container input[type=text]:focus,
+    .form-container input[type=password]:focus {
+      background-color: #ddd;
+      outline: none;
+    }
+
+    /* Set a style for the submit/login button */
+    .form-container .btn {
+      background-color: #04AA6D;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom: 10px;
+      opacity: 0.8;
+    }
+
+    /* Add a red background color to the cancel button */
+    .form-container .cancel {
+      border: none;
+      outline: 0;
+      display: inline-block;
+      padding: 8px;
+      color: white;
+      background-color: #000;
+      text-align: center;
+      cursor: pointer;
+      width: 100%;
+      font-size: 18px;
+      margin-top: 20px;
+    }
+
+    /* Add some hover effects to buttons */
+    .form-container .btn:hover,
+    .open-button:hover {
+      opacity: 1;
+    }
+  </style>
+
+  <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td,
+    th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+  </style>
+  <style>
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      /* max-width: 500px; */
+      margin: auto;
+      text-align: center;
+    }
+
+    .card img {
+      width: 60%;
+    }
+
+    .title {
+      color: grey;
+      font-size: 18px;
+    }
+
+    .blur-background {
+      position: absolute;
+      width: 83vw;
+      height: 61vw;
+      z-index: 9999999999;
+      backdrop-filter: blur(12px);
+      display: none;
+    }
+
+    button {
+      border: none;
+      outline: 0;
+      display: inline-block;
+      padding: 8px;
+      color: white;
+      background-color: #000;
+      text-align: center;
+      cursor: pointer;
+      width: 100%;
+      font-size: 18px;
+    }
+
+    a {
+      text-decoration: none;
+      color: black;
+    }
+
+    button:hover,
+    a:hover {
+      opacity: 0.7;
+    }
+
+    #datetime {
+      font-size: 2em;
+      color: #333;
+    }
+
+    .name {
+      position: absolute;
+      left: 2vw;
+      top: 1vw;
+      z-index: 9999999999999999;
+      font-weight: bold;
+    }
+  </style>
+  <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-firestore.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <script src="js/FD/fdfirebase.js"></script>
+  <script src="js/FD/sdfetching.js"></script>
+</head>
+
+<body>
+
+
+  <div class="main-body">
+    <div class="left">
+      <div class="navcontainer">
+        <nav class="nav">
+          <div class="nav-upper-options">
+            <div id="dashboard" class="nav-option option1">
+              <img src="https://cdn-icons-png.freepik.com/512/2329/2329093.png" class="nav-img" alt="dashboard">
+              <h3> Dashboard</h3>
+            </div>
+
+            <div id="guestlecturespeaker" class="option2 nav-option">
+              <img src="img/pngwing.com.png" class="nav-img" alt="articles">
+              <h3>Guest Lecture/ Speaker</h3>
+            </div>
+
+            <div id="projectsanctioned" class="nav-option option3">
+              <img src="https://cdn-icons-png.flaticon.com/512/662/662608.png" class="nav-img" alt="projectsanctioned">
+              <h3>Project Sanctioned</h3>
+            </div>
+
+            <div id="patents" class="nav-option option9">
+              <img src="https://cdn-icons-png.flaticon.com/512/4391/4391401.png" class="nav-img" alt="patents">
+              <h3>Patents</h3>
+            </div>
+
+            <div id="journals" class="nav-option option4">
+              <img
+                src="https://png.pngtree.com/png-vector/20230413/ourmid/pngtree-journalism-line-icon-vector-png-image_6704928.png"
+                class="nav-img" alt="journals">
+              <h3>Journals</h3>
+            </div>
+
+            <div id="bookspublished" class="nav-option option5">
+              <img src="https://cdn-icons-png.flaticon.com/512/29/29302.png" class="nav-img" alt="blog">
+              <h3>Books Published</h3>
+            </div>
+
+            <div id="conferences" class="nav-option option6">
+              <img src="https://cdn-icons-png.flaticon.com/512/3135/3135883.png" class="nav-img" alt="conferences">
+              <h3>Conferences</h3>
+            </div>
+
+            <div id="workshopsorganised" class="nav-option option7">
+              <img src="https://cdn-icons-png.flaticon.com/512/4804/4804803.png" class="nav-img" alt="conferences">
+              <h3>Workshops Organised</h3>
+            </div>
+
+            <div id="foreignvisits" class="nav-option option8">
+              <img src="https://cdn-icons-png.flaticon.com/512/48/48596.png" class="nav-img" alt="foreignvisits">
+              <h3>Foreign Visits</h3>
+            </div>
+
+
+            <div id="otherachievements" class="nav-option option9">
+              <img src="https://cdn-icons-png.flaticon.com/512/3601/3601252.png" class="nav-img"
+                alt="otherachievements">
+              <h3>Other Achievements</h3>
+            </div>
+
+            <div class="nav-option">
+              <div class="cd-popup-trigger logout">
+                <img src="https://icons.veryicon.com/png/o/internet--web/website-icons/logout-8.png" class="nav-img"
+                  alt="logout">
+                <h3>Logout</h3>
+              </div>
+            </div>
+
+          </div>
+        </nav>
+      </div>
+    </div>
+    <div class="right">
+      <nav class="navbar-2"></nav>
+      <div class="main-container">
+
+        <div class="blur-background"></div>
+        <div class="main">
+
+          <div class="report-container0">
+            <div class="report-header">
+              <p id="username" class="name">Hey! User<span></span></p>
+              <button class="open-button view" onclick="openFormEdit()">Edit Profile</button>
+            </div>
+
+            <div class="wrapper">
+              <div class="user-card card">
+                <div class="user-card-img">
+                  <img id="profile-img" src="https://cdn-icons-png.flaticon.com/512/4121/4121064.png" alt="">
+                </div>
+                <div class="user-card-info">
+                  <h2 class="name1" id="studentname">User</h2>
+                  <p><span>Email:</span> <span id="studentemail">example@example.com</span></p>
+                    <p><span>Roll No:</span> <span id="studentrollno">DEI123456</span></p>
+                  <p><span>Course:</span> <span id="studentcourse">Course</span></p>
+                  <p><span>Branch:</span> <span id="studentbranch">Professsor</span></p>
+                    <p><span>Faculty:</span> <span id="studentfaculty">Faculty</span></p>
+                  <p><span>Address:</span> <span id="studentaddress">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span></p>
+                  <p id="institute">Dayalbagh Educational Institute,<br> Dayalbagh, Agra-282005, Uttar Pradesh, INDIA
+                  </p>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="form-popup" id="myForm_edit">
+              <form class="form-container" id="myForm">
+
+                <div class="form-group2">
+                  <label for="name">Name: </label>
+                  <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group2">
+                  <label for="name">Photo: </label>
+                  <input type="file" id="myFile" name="filename">
+                </div>
+
+                <div class="form-group2">
+                  <label for="email">Email: </label>
+                  <span id="studentemailform" class="email size2">example@example.com</span>
+                </div>
+
+                <div class="form-group2">
+                  <label for="number">Roll-No:</label>
+                  <span id="studentrollnoform" class="EmpNO size2">DEI123456</span>
+                </div>
+
+                <div class="form-group2">
+                  <label for="designation">Branch: </label>
+                  <input type="text" id="branch" name="designation" required>
+                </div>
+
+                <div class="form-group2">
+                  <label for="department">Course: </label>
+                  <input type="text" id="course" name="department" required>
+                </div>
+                <div class="form-group2">
+                    <label for="department">Faculty: </label>
+                    <input type="text" id="faculty" name="faculty" required>
+                  </div>
+
+                <div class="form-group2">
+                  <label for="address">Address: </label>
+                  <input type="text" id="address" name="address" required>
+                </div>
+
+
+                <button  type="submit" class="submit-btn">Submit</button>
+                <button id="reloadButton" type="button" class="btn cancel" onclick="closeFormEdit()">Close</button>
+              </form>
+            </div>
+          </div>
+
+
+          <!-- Guest lecture -->
+          <div class="report-container1">
+            <div class="report-header">
+              <p id="username1" class="name">Hey! User<span></span></p>
+              <button class="open-button view" onclick="openForm1()">Add Data</button>
+              <!-- <button class="open-button view" onclick="openForm()">Add Data</button> -->
+            </div>
+
+            <div class="table-container">
+              <form id="myTable1">
+                <table id="dataTable1">
+                  <tr>
+                    <th>Venue</th>
+                    <th>Date</th>
+                    <th>Organisation</th>
+                    <th>Theme</th>
+                  </tr>
+                </table>
+              </form>
+            </div>
+
+            <div class="form-popup" id="myForm_a">
+              <form class="form-container" id="myForm1">
+
+                <div class="form-group">
+                  <label for="name">Venue:</label>
+                  <input type="text" id="venue" name="venue" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Date</label>
+                  <input type="date" id="date" name="date" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="age">Organisation:</label>
+                  <input type="text" id="organisation" name="organisation" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="message">Theme:</label>
+                  <textarea id="theme" name="theme" rows="4" required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit</button>
+              </form>
+
+              <button type="button" class="btn cancel" onclick="closeForm1()">Close</button>
+              </form>
+            </div>
+          </div>
+
+
+
+          <!-- Projects -->
+          <div class="report-container2">
+            <div class="report-header">
+              <p id="username2" class="name">Hey! User<span></span></p>
+              <button class="open-button view" onclick="openForm2()">Add Data</button>
+            </div>
+
+            <div class="table-container">
+              <form id="myTable2">
+                <table id="dataTable2">
+                  <tr>
+                    <th>Sanctioning Body</th>
+                    <th>Title</th>
+                    <th>Fund</th>
+                    <th>Start-Date</th>
+                    <th>End-Date</th>
+                  </tr>
+                 
+                </table>
+              </form>
+            </div>
+
+            <div class="form-popup" id="myForm_b">
+              <form class="form-container" id="myForm2">
+
+                <div class="form-group">
+                  <label for="name">Sanctioning Body</label>
+                  <input type="text" id="sanctioningbody" name="sanctioningbody" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Title</label>
+                  <input type="text" id="title" name="title" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="age">Fund</label>
+                  <input type="text" id="fund" name="fund" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Start-Date</label>
+                  <input type="date" id="sdate" name="sdate" required>
+                </div>
+                <div class="form-group">
+                  <label for="email">End-Date</label>
+                  <input type="date" id="edate" name="edate" required>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit</button>
+
+                <button type="button" class="btn cancel" onclick="closeForm2()">Close</button>
+              </form>
+            </div>
+          </div>
+
+           <!-- PATENTS -->
+
+          
+
+          <div class="report-container9">
+            <div class="report-header">
+              <p id="username3" class="name">Hey! User<span></span></p>
+              <button class="open-button view" onclick="openForm9()">Add Data</button>
+            </div>
+
+            <div class="table-container">
+              <form id="myTable9">
+                <table id="dataTable3">
+                <table>
+                  <tr>
+                    <!-- <th>Title</th>
+                    <th>Application Number</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Validity Upto</th>
+                 
+                  </tr> -->
+                
+                </table>
+              </form>
+            </div>
+
+
+            <div class="form-popup" id="myForm_i">
+              <form class="form-container"  id="myForm3a">
+
+                <div class="form-group">
+                  <label for="status">Title:</label>
+                  <input type="text" id="tittle" name="status" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Application Number:</label>
+                  <input type="number" id="appnumber" name="appnumber" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="status">Status:</label>
+                  <input type="text" id="status" name="status" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="fdate">Date</label>
+                  <input type="date" id="fdate" name="validityupto" required>
+                </div>
+                <div class="form-group">
+                  <label for="date">Validity Upto</label>
+                  <input type="date" id="validityupto" name="validityupto" required>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit</button>
+                <button type="button" class="btn cancel" onclick="closeForm9()">Close</button>
+              </form>
+            </div>
+          </div>
+
+          <!-- journal -->
+          <div class="report-container3">
+            <div class="report-header">
+              <p id="username4" class="name">Hey! User<span></span></p>
+              <button class="open-button view" onclick="openForm3()">Add Data</button>
+            </div>
+
+            <div class="table-container">
+              <form id="myTable3">
+                <table>
+                  <tr>
+                    <th>Title</th>
+                    <th>Name of Journal</th>
+                    <th>Date of Publication</th>
+                  </tr>
+                  <tr>
+                    <td>none</td>
+                    <td>none</td>
+                    <td>none</td>
+                  </tr>
+                </table>
+              </form>
+            </div>
+
+
+            <div class="form-popup" id="myForm_c">
+              <form class="form-container" id="myForm4">
+
+                <div class="form-group">
+                  <label for="email">Title</label>
+                  <input type="text" id="title" name="title" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Name of Journal</label>
+                  <input type="text" id="nameofjournal" name="nameofjournal" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="age">Date of Publication</label>
+                  <input type="date" id="dateofpublication" name="dateofpublication" required>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit</button>
+
+                <button type="button" class="btn cancel" onclick="closeForm3()">Close</button>
+              </form>
+            </div>
+
+          </div>
+
+          <!-- Books published -->
+          <div class="report-container4">
+            <div class="report-header">
+              <p id="username5" class="name">Hey! User<span></span></p>
+              <button class="open-button view" onclick="openForm4()">Add Data</button>
+            </div>
+
+            <div class="table-container">
+              <form id="myTable4">
+                <table>
+                  <tr>
+                    <th>Title</th>
+                    <th>Subject</th>
+                    <th>Publication</th>
+                    <th>Author(s)</th>
+                  </tr>
+                  <tr>
+                    <td>none</td>
+                    <td>none</td>
+                    <td>none</td>
+                    <td>none</td>
+                  </tr>
+                </table>
+              </form>
+            </div>
+
+            <div class="form-popup" id="myForm_d">
+              <form class="form-container" id="myForm5">
+
+                <div class="form-group">
+                  <label for="email">Title</label>
+                  <input type="text" id="title" name="title" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Subject</label>
+                  <input type="text" id="subject" name="subject" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="age">Publication</label>
+                  <input type="text" id="publication" name="publication" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Author(s)</label>
+                  <input type="text" id="author" name="author" required>
+                </div>
+
+
+                <button type="submit" class="submit-btn">Submit</button>
+
+                <button type="button" class="btn cancel" onclick="closeForm4()">Close</button>
+              </form>
+            </div>
+          </div>
+
+          <!-- Conferences -->
+          <div class="report-container5">
+            <div class="report-header">
+              <p id="username6" class="name">Hey! User<span></span></p>
+              <button class="open-button view" onclick="openForm5()">Add Data</button>
+            </div>
+
+            <div class="table-container">
+              <form id="myTable5">
+                <table>
+                  <tr>
+                    <th>Date</th>
+                    <th>Location</th>
+                    <th>Name</th>
+                    <th>Topic</th>
+                  </tr>
+                  <tr>
+                    <td>none</td>
+                    <td>none</td>
+                    <td>none</td>
+                    <td>none</td>
+                  </tr>
+                </table>
+              </form>
+            </div>
+
+
+            <div class="form-popup" id="myForm_e">
+              <form class="form-container" id="myForm6">
+
+                <div class="form-group">
+                  <label for="email">Date</label>
+                  <input type="date" id="date" name="date" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Location</label>
+                  <input type="text" id="location" name="location" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="age">Name</label>
+                  <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="age">Topic</label>
+                  <input type="text" id="topic" name="topic" required>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit</button>
+
+                <button type="button" class="btn cancel" onclick="closeForm5()">Close</button>
+              </form>
+            </div>
+          </div>
+
+          <!-- Workshop organised -->
+          <div class="report-container6">
+            <div class="report-header">
+              <p id="username7" class="name">Hey! User<span></span></p>
+              <button class="open-button view" onclick="openForm6()">Add Data</button>
+            </div>
+
+            <div class="table-container">
+              <form id="myTable6">
+                <table>
+                  <tr>
+                    <th>Workshop Title</th>
+                    <th>Subject</th>
+                    <th>Date</th>
+                    <th>Mode of Workshop</th>
+                    <th>Location</th>
+                  </tr>
+                  <tr>
+                    <td>none</td>
+                    <td>none</td>
+                    <td>none</td>
+                    <td>none</td>
+                    <td>none</td>
+                  </tr>
+                </table>
+              </form>
+            </div>
+
+
+            <div class="form-popup" id="myForm_f">
+              <form class="form-container"  id="myForm7">
+
+                <div class="form-group">
+                  <label for="name">Workshop Title</label>
+                  <input type="text" id="workshoptitle" name="workshoptitle" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Subject</label>
+                  <input type="text" id="subject" name="subject" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Date</label>
+                  <input type="date" id="date" name="date" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="name">Mode of Workshop</label>
+                  <input type="text" id="modeofworkshop" name="modeofworkshop" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Location</label>
+                  <input type="text" id="location" name="location" required>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit</button>
+
+                <button type="button" class="btn cancel" onclick="closeForm6()">Close</button>
+              </form>
+            </div>
+
+          </div>
+          <!-- Foreign visit -->
+          <div class="report-container7">
+            <div class="report-header">
+              <p id="username8" class="name">Hey! User<span></span></p>
+              <button class="open-button view" onclick="openForm7()">Add Data</button>
+            </div>
+
+            <div class="table-container">
+              <form id="myTable7">
+                <table>
+                  <tr>
+                    <th>Date</th>
+                    <th>Location</th>
+                    <th>Cause</th>
+                  </tr>
+                  <tr>
+                    <td>none</td>
+                    <td>none</td>
+                    <td>none</td>
+                  </tr>
+                </table>
+              </form>
+            </div>
+
+
+            <div class="form-popup" id="myForm_g">
+              <form class="form-container"  id="myForm8">
+
+                <div class="form-group">
+                  <label for="email">Date</label>
+                  <input type="date" id="date" name="date" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Location</label>
+                  <input type="text" id="location" name="location" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="message">Cause</label>
+                  <textarea id="cause" name="cause" rows="4" required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit</button>
+
+                <button type="button" class="btn cancel" onclick="closeForm7()">Close</button>
+              </form>
+            </div>
+          </div>
+
+          <!-- Other achievemet -->
+          <div class="report-container8">
+            <div class="report-header">
+              <p id="username9" class="name">Hey! User<span></span></p>
+              <button class="open-button view" onclick="openForm8()">Add Data</button>
+            </div>
+
+            <div class="table-container">
+              <form id="myTable8">
+                <table>
+                  <tr>
+                    <th>Sanctioning Body</th>
+                    <th>Title</th>
+                    <th>Fund</th>
+                    <th>Start-Date</th>
+                    <th>End-Date</th>
+                  </tr>
+                  <tr>
+                    <td>none</td>
+                    <td>none</td>
+                    <td>none</td>
+                    <td>none</td>
+                    <td>none</td>
+                  </tr>
+                </table>
+              </form>
+            </div>
+
+
+            <div class="form-popup" id="myForm_h">
+              <form class="form-container"  id="myForm9">
+
+                <div class="form-group">
+                  <label for="name">Sanctioning Body:</label>
+                  <input type="text" id="sanctioningbody" name="venue" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Title</label>
+                  <input type="text" id="title" name="date" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="age">Fund:</label>
+                  <input type="text" id="fund" name="organisation" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Start-Date</label>
+                  <input type="date" id="sdate" name="date" required>
+                </div>
+                <div class="form-group">
+                  <label for="email">End-Date</label>
+                  <input type="date" id="edate" name="date" required>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit</button>
+                <button type="button" class="btn cancel" onclick="closeForm8()">Close</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cd-popup" role="alert">
+    <div class="cd-popup-container">
+      <p>Are you sure you want to logout?</p>
+      <ul class="cd-buttons">
+        <li><a href="index.html">Yes</a></li>
+        <li><a href="facultydashboard.html">No</a></li>
+      </ul>
+      <a href="#0" class="cd-popup-close img-replace">Close</a>
+    </div> <!-- cd-popup-container -->
+  </div> <!-- cd-popup -->
+  <div class="footer-main"></div>
+
+
+  <script>
+    const blur = document.getElementsByClassName('blur-background')[0];
+
+    function openFormEdit() {
+      document.getElementById("myForm_edit").style.display = "block";
+      blur.style.display = "block";
+    }
+
+    function closeFormEdit() {
+      document.getElementById("myForm_edit").style.display = "none";
+      blur.style.display = "none";
+    }
+
+    function openForm1() {
+      document.getElementById("myForm_a").style.display = "block";
+      blur.style.display = "block";
+    }
+
+    function closeForm1() {
+      document.getElementById("myForm_a").style.display = "none";
+      blur.style.display = "none";
+    }
+
+    function openForm2() {
+      document.getElementById("myForm_b").style.display = "block";
+      blur.style.display = "block";
+    }
+
+    function closeForm2() {
+      document.getElementById("myForm_b").style.display = "none";
+      blur.style.display = "none";
+    }
+
+    function openForm3() {
+      document.getElementById("myForm_c").style.display = "block";
+      blur.style.display = "block";
+    }
+
+    function closeForm3() {
+      document.getElementById("myForm_c").style.display = "none";
+      blur.style.display = "none";
+    }
+
+    function openForm4() {
+      document.getElementById("myForm_d").style.display = "block";
+      blur.style.display = "block";
+    }
+
+    function closeForm4() {
+      document.getElementById("myForm_d").style.display = "none";
+      blur.style.display = "none";
+    }
+
+    function openForm5() {
+      document.getElementById("myForm_e").style.display = "block";
+      blur.style.display = "block";
+    }
+
+    function closeForm5() {
+      document.getElementById("myForm_e").style.display = "none";
+      blur.style.display = "none";
+    }
+    function openForm6() {
+      document.getElementById("myForm_f").style.display = "block";
+      blur.style.display = "block";
+    }
+
+    function closeForm6() {
+      document.getElementById("myForm_f").style.display = "none";
+      blur.style.display = "none";
+    }
+    function openForm7() {
+      document.getElementById("myForm_g").style.display = "block";
+      blur.style.display = "block";
+    }
+
+    function closeForm7() {
+      document.getElementById("myForm_g").style.display = "none";
+      blur.style.display = "none";
+    }
+
+    function openForm8() {
+      document.getElementById("myForm_h").style.display = "block";
+      blur.style.display = "block";
+    }
+
+    function closeForm8() {
+      document.getElementById("myForm_h").style.display = "none";
+      blur.style.display = "none";
+    }
+
+    function openForm9() {
+      document.getElementById("myForm_i").style.display = "block";
+      blur.style.display = "block";
+    }
+
+    function closeForm9() {
+      document.getElementById("myForm_i").style.display = "none";
+      blur.style.display = "none";
+    }
+  </script>
+  <script>
+    // JavaScript code to handle the click event and trigger a page reload
+    document.getElementById('reloadButton').addEventListener('click', function () {
+      location.reload();
+    });
+  </script>
+  <!-- footer -->
+  <script src="./index.js"></script>
+  <script src="js/navdashboard.js"></script>
+  <script src="js/home.js"></script>
+  <script src="js/footer.js"></script>
+  <script src="js/facultydashboard.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="js/main.js"></script> <!-- Resource jQuery -->
+  <script src="js/dashboardforms/sd.js"></script>
+
+
+
+</body>
+
+</html>
