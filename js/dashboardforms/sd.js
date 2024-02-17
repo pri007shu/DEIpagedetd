@@ -1,323 +1,112 @@
-// FDGL LOGIC
+firebase.auth().onAuthStateChanged(user => {
+  if (user) {
+      const userId = user.uid;
+      // Use userId to update Firestore document or perform other actions
+      console.log("Logged in user ID:", userId);
+      // Now you can use userId in your Firestore update logic or other parts of your code
+  } else {
+      // User is not logged in
+      console.log("No user logged in");
+  }
+});
 
+// PROFILE PAGE
 
-         // Academic Performance
+const form = document.getElementById('myForm');
 
-
-
-
-         // Get a reference to the Firestore service
-         const db = firebase.firestore();
-         const auth = firebase.auth();
-     
-         // Add an event listener to the form submission
-         document.getElementById('myForm1').addEventListener('submit', function(event) {
-           event.preventDefault(); // Prevent the form from submitting normally
-           
-           // Get the current user
-           const user = auth.currentUser;
-     
-           if (user) {
-             // User is signed in, proceed to upload form data
-             const grades = document.getElementById('grades').value;
-             const sgpa = document.getElementById('sgpa').value;
-             
-     
-             // Upload form data to Firestore collection
-             db.collection("students").doc(user.uid).collection("sdAcademicPerformance").add({
-              grades: grades,
-              sgpa: sgpa,
-            
-             })
-             .then(function(docRef) {
-               console.log("Document written with ID: ", docRef.id);
-               alert("Form submitted successfully!");
-               document.getElementById('myForm1').reset(); // Clear the form fields
-             })
-             .catch(function(error) {
-               console.error("Error adding document: ", error);
-               alert("An error occurred. Please try again later.");
-             });
-           } else {
-             // User is not signed in, prompt them to sign in first
-             alert("Please sign in before submitting the form.");
-           }
-         });
-
-
-
-
-         // Projects Sanctioned
-
-
-
-         // Add an event listener to the form submission
-         document.getElementById('myForm2').addEventListener('submit', function(event) {
-          event.preventDefault(); // Prevent the form from submitting normally
-          
-          // Get the current user
-          const user = auth.currentUser;
-    
-          if (user) {
-            // User is signed in, proceed to upload form data
-            
-            const title = document.getElementById('title').value;
-            const supervision = document.getElementById('supervision').value;
-            const subject = document.getElementById('subject').value;
-            const sdate = document.getElementById('sdate').value;
-            const edate = document.getElementById('edate').value;
-    
-            // Upload form data to Firestore collection
-            db.collection("students").doc(user.uid).collection("sdprojects").add({
-              supervision: supervision,
-              sdate: sdate,
-              title: title,
-              fund: fund,
-              edate: edate
-            })
-            .then(function(docRef) {
-              console.log("Document written with ID: ", docRef.id);
-              alert("Form submitted successfully!");
-              document.getElementById('myForm2').reset(); // Clear the form fields
-            })
-            .catch(function(error) {
-              console.error("Error adding document: ", error);
-              alert("An error occurred. Please try again later.");
-            });
-          } else {
-            // User is not signed in, prompt them to sign in first
-            alert("Please sign in before submitting the form.");
-          }
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = form.name.value;
+    const branch = form.branch.value;
+    const course = form.course.value;
+    const address = form.address.value;
+    const faculty = form.faculty.value;
+    const userId = firebase.auth().currentUser.uid;
+    // Update Firestore data here
+    try {
+        await db.collection('students').doc(userId).update({
+            name: name,
+            branch: branch,
+            course: course,
+            address: address,
+            faculty: faculty
         });
+        alert('Data updated successfully!');
+        console.log('Document successfully updated!');
+        document.getElementById("myForm").reset();
+        // Close the form or show a success message
+    } catch (error) {
+      alert('Data not updated !');
+        console.error('Error updating document: ', error);
+        // Show an error message
+    }
+});
+
+/*
+// GUEST LECTURE
+
+  document.getElementById("myForm1").addEventListener("submit", function(event) {
+    event.preventDefault();
+    const venue = document.getElementById("venue").value;
+    const date = document.getElementById("date").value;
+    const organisation = document.getElementById("organisation").value;
+    const theme = document.getElementById("theme").value;
+    const userId = firebase.auth().currentUser.uid;
+  
+    // Add data to Firestore
+    db.collection("faculty").doc(userId).collection("fdGuestLecture").add({
+      venue: venue,
+      date: date,
+      organisation: organisation,
+      theme: theme
+    })
+    .then(function(docRef) {
+      console.log("Document written with ID: ", docRef.id);
+      updateTable1(); // Update the table after submission
+    })
+    .catch(function(error) {
+      console.error("Error adding document: ", error);
+    });
+  
+    // Clear the form
+    document.getElementById("myForm1").reset();
+  });
+  
 
 
-        // Patents
-
-          // Add an event listener to the form submission
-          document.getElementById('myForm3').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the form from submitting normally
-            
-            // Get the current user
-            const user = auth.currentUser;
-      
-            if (user) {
-              // User is signed in, proceed to upload form data
-            
-              const nameofproducts = document.getElementById('nameofproducts').value;
-              const supervision = document.getElementById('supervision').value;
-              const date = document.getElementById('date').value;
-              
-      
-              // Upload form data to Firestore collection
-              db.collection("students").doc(user.uid).collection("fdpatents").add({
-                
-                nameofproducts: nameofproducts,
-               
-                supervision: supervision,
-                date: date
-              })
-              .then(function(docRef) {
-                console.log("Document written with ID: ", docRef.id);
-                alert("Form submitted successfully!");
-                document.getElementById('myForm3').reset(); // Clear the form fields
-              })
-              .catch(function(error) {
-                console.error("Error adding document: ", error);
-                alert("An error occurred. Please try again later.");
-              });
-            } else {
-              // User is not signed in, prompt them to sign in first
-              alert("Please sign in before submitting the form.");
-            }
-          });
-
-
-          // Research Papers
-
-
-          // complete from here okay //
-
-
-
-
-          
-            // Add an event listener to the form submission
-         document.getElementById('myForm4').addEventListener('submit', function(event) {
-          event.preventDefault(); // Prevent the form from submitting normally
-          
-          // Get the current user
-          const user = auth.currentUser;
-    
-          if (user) {
-            // User is signed in, proceed to upload form data
-            const subject = document.getElementById('subject').value;
-            const title = document.getElementById('title').value;
-            const publication = document.getElementById('publication').value;
-            const author = document.getElementById('author').value;
-    
-            // Upload form data to Firestore collection
-            db.collection("faculty").doc(user.uid).collection("fdbs").add({
-              subject: subject,
-              publication: publication,
-              title: title,
-              author: author
-            })
-            .then(function(docRef) {
-              console.log("Document written with ID: ", docRef.id);
-              alert("Form submitted successfully!");
-              document.getElementById('myForm4').reset(); // Clear the form fields
-            })
-            .catch(function(error) {
-              console.error("Error adding document: ", error);
-              alert("An error occurred. Please try again later.");
-            });
-          } else {
-            // User is not signed in, prompt them to sign in first
-            alert("Please sign in before submitting the form.");
-          }
+  // Function to update the table with Firestore data
+  function updateTable1() {
+    var table = document.getElementById("dataTable1");
+    table.innerHTML = "<tr><th>Venue</th><th>Date</th><th>Organisation</th><th>Theme</th></tr>";
+  
+    var user = firebase.auth().currentUser;
+    if (user) {
+      db.collection("faculty").doc(user.uid).collection("fdGuestLecture").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          var data = doc.data();
+          var row = table.insertRow(-1);
+          row.insertCell(0).innerHTML = data.venue;
+          row.insertCell(1).innerHTML = data.date;
+          row.insertCell(2).innerHTML = data.organisation;
+          row.insertCell(3).innerHTML = data.theme;
         });
+      });
+    } else {
+      console.error("User not logged in.");
+    }
+  }
+  
+  // Listen for authentication state changes
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // User is signed in.
+      console.log("User is logged in:", user.uid);
+      updateTable1(); // Call updateTable when user is logged in
+    } else {
+      // User is signed out.
+      console.log("User is not logged in.");
+    }
+  });
 
-          // Add an event listener to the form submission
-          document.getElementById('myForm5').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the form from submitting normally
-            
-            // Get the current user
-            const user = auth.currentUser;
-      
-            if (user) {
-              // User is signed in, proceed to upload form data
-              const date = document.getElementById('date').value;
-              const location = document.getElementById('location').value;
-              const name = document.getElementById('name').value;
-              const topic = document.getElementById('topic').value;
-              const edate = document.getElementById('edate').value;
-      
-              // Upload form data to Firestore collection
-              db.collection("faculty").doc(user.uid).collection("fdcf").add({
-                date: date,
-                location: location,
-                name: name,
-                topic: topic,
-              })
-              .then(function(docRef) {
-                console.log("Document written with ID: ", docRef.id);
-                alert("Form submitted successfully!");
-                document.getElementById('myForm5').reset(); // Clear the form fields
-              })
-              .catch(function(error) {
-                console.error("Error adding document: ", error);
-                alert("An error occurred. Please try again later.");
-              });
-            } else {
-              // User is not signed in, prompt them to sign in first
-              alert("Please sign in before submitting the form.");
-            }
-          });
 
-            // Add an event listener to the form submission
-         document.getElementById('myForm6').addEventListener('submit', function(event) {
-          event.preventDefault(); // Prevent the form from submitting normally
-          
-          // Get the current user
-          const user = auth.currentUser;
-    
-          if (user) {
-            // User is signed in, proceed to upload form data
-            const workshoptitle = document.getElementById('workshoptitle').value;
-            const subject = document.getElementById('subject').value;
-            const date = document.getElementById('date').value;
-            const modeofworkshop = document.getElementById('modeofworkshop').value;
-            const location = document.getElementById('location').value;
-    
-            // Upload form data to Firestore collection
-            db.collection("faculty").doc(user.uid).collection("fdws").add({
-              workshoptitle: workshoptitle,
-              subject: subject,
-              date: date,
-              modeofworkshop: modeofworkshop,
-              location: location
-            })
-            .then(function(docRef) {
-              console.log("Document written with ID: ", docRef.id);
-              alert("Form submitted successfully!");
-              document.getElementById('myForm6').reset(); // Clear the form fields
-            })
-            .catch(function(error) {
-              console.error("Error adding document: ", error);
-              alert("An error occurred. Please try again later.");
-            });
-          } else {
-            // User is not signed in, prompt them to sign in first
-            alert("Please sign in before submitting the form.");
-          }
-        });
-
-          // Add an event listener to the form submission
-          document.getElementById('myForm7').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the form from submitting normally
-            
-            // Get the current user
-            const user = auth.currentUser;
-      
-            if (user) {
-              // User is signed in, proceed to upload form data
-              const date = document.getElementById('date').value;
-              const cause = document.getElementById('cause').value;
-      
-              // Upload form data to Firestore collection
-              db.collection("faculty").doc(user.uid).collection("fdfv").add({
-                date: date,
-                cause: cause,
-               
-              })
-              .then(function(docRef) {
-                console.log("Document written with ID: ", docRef.id);
-                alert("Form submitted successfully!");
-                document.getElementById('myForm7').reset(); // Clear the form fields
-              })
-              .catch(function(error) {
-                console.error("Error adding document: ", error);
-                alert("An error occurred. Please try again later.");
-              });
-            } else {
-              // User is not signed in, prompt them to sign in first
-              alert("Please sign in before submitting the form.");
-            }
-          });
-
-            // Add an event listener to the form submission
-         document.getElementById('myForm8').addEventListener('submit', function(event) {
-          event.preventDefault(); // Prevent the form from submitting normally
-          
-          // Get the current user
-          const user = auth.currentUser;
-    
-          if (user) {
-            // User is signed in, proceed to upload form data
-            const achievementtitle = document.getElementById('achievementtitle').value;
-            const organisedby = document.getElementById('organisedby').value;
-            const date = document.getElementById('date').value;
-            const referencelink = document.getElementById('referencelink').value;
-    
-            // Upload form data to Firestore collection
-            db.collection("faculty").doc(user.uid).collection("fdos").add({
-              achievementtitle: achievementtitle,
-               organisedby: organisedby,
-               date: date,
-               referencelink: referencelink,
-              
-            })
-            .then(function(docRef) {
-              console.log("Document written with ID: ", docRef.id);
-              alert("Form submitted successfully!");
-              document.getElementById('myForm2').reset(); // Clear the form fields
-            })
-            .catch(function(error) {
-              console.error("Error adding document: ", error);
-              alert("An error occurred. Please try again later.");
-            });
-          } else {
-            // User is not signed in, prompt them to sign in first
-            alert("Please sign in before submitting the form.");
-          }
-        });
+  */
