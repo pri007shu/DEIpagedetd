@@ -1,6 +1,6 @@
 # College Faculty of Engineering Website
 
-![College Logo](https://github.com/your-username/your-repo/raw/main/images/college-logo.png)
+![College Logo](https://github.com/SajalSatsangi/DEIpagedetd/blob/main/img/image.png)
 
 Welcome to the official website of the Faculty of Engineering at [Your College Name]! This website has been designed and developed to provide valuable information about the faculty, courses, research activities, and other important updates. Whether you are a student, faculty member, or visitor, we hope you find the content informative and engaging.
 
