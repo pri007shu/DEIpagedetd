@@ -5,16 +5,18 @@ function updateUserName() {
       // Fetch user data from Firestore and update the name
       const userId = user.uid;
 
-      firebase.firestore().collection('students').doc(userId).get()
+      firebase.firestore().collection('alumini').doc(userId).get()
         .then((doc) => {
           if (doc.exists) {
             const userName = doc.data().name;
             const userEmail = doc.data().email;
-            const userprofileRollno = doc.data().rollNo;
-            const userCourse = doc.data().course;
-            const userBranch = doc.data().branch;
-            const userstudentAddress = doc.data().address;
-            const userFaculty = doc.data().faculty;
+            const userprofileAADEIno = doc.data().aadeiNo;
+            const userYearofpassing = doc.data().yearofpassing;
+           
+            const userAluminiAddress = doc.data().address;
+            const userCourse = doc.data().aluminicourse;
+            
+            
 
 
             document.getElementById('username').innerText = "Hey! " + userName;
@@ -27,15 +29,14 @@ function updateUserName() {
             document.getElementById('username7').innerText = "Hey! " + userName;
             document.getElementById('username8').innerText = "Hey! " + userName;
             document.getElementById('username9').innerText = "Hey! " + userName;
-            document.getElementById("studentname").innerText = userName
-            document.getElementById("studentemail").innerText = userEmail
-            document.getElementById("studentrollno").innerText = userprofileRollno
-            document.getElementById("studentcourse").innerText = userCourse
-            document.getElementById("studentbranch").innerText = userBranch
-            document.getElementById("studentaddress").innerText = userstudentAddress
-            document.getElementById("studentemailform").innerText = userEmail
-            document.getElementById("studentrollnoform").innerText = userprofileRollno
-            document.getElementById("studentfaculty").innerText = userFaculty
+            document.getElementById("alumininame").innerText = userName
+            document.getElementById("aluminiemail").innerText = userEmail
+            document.getElementById("aadeino").innerText = userprofileAADEIno
+            document.getElementById("aluminicourse").innerText = userCourse
+            document.getElementById("aluminiaddresss").innerText = userAluminiAddress
+            document.getElementById("aluminiformemaill").innerText = userEmail
+            document.getElementById("aadeinoo").innerText = userprofileAADEIno
+            document.getElementById("yop").innerText = userYearofpassing
               
           } else {
             console.error('User data not found in Firestore');
