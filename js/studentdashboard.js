@@ -1,16 +1,16 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Get references to each navigation item
     const dashboardNavItem = document.getElementById('dashboard');
-    const academicperformanceNavItem = document.getElementById('academicperformance');
+    const guestlecturespeakerNavItem = document.getElementById('guestlecturespeaker');
     const projectsanctionedNavItem = document.getElementById('projectsanctioned');
+    const patentsNavItem = document.getElementById('patents');
     const journalsNavItem = document.getElementById('journals');
     const bookspublishedNavItem = document.getElementById('bookspublished');
     const conferencesNavItem = document.getElementById('conferences');
-    const workshopsorganisedNavItem = document.getElementById('workshopsorganised');
-    const foreignvisitsNavItem = document.getElementById('foreignvisits');
-    const otherachievementsNavItem = document.getElementById('otherachievements');
-    const patentsNavItem = document.getElementById('patents');
-
+   // const workshopsorganisedNavItem = document.getElementById('workshopsorganised');
+  //  const foreignvisitsNavItem = document.getElementById('foreignvisits');
+  //  const otherachievementsNavItem = document.getElementById('otherachievements');
+   
     const blur = document.getElementsByClassName('blur-background')[0];
 
     // Get references to report containers
@@ -20,20 +20,20 @@ document.addEventListener('DOMContentLoaded', function () {
     const reportContainer3 = document.querySelector('.report-container3');
     const reportContainer4 = document.querySelector('.report-container4');
     const reportContainer5 = document.querySelector('.report-container5');
-    const reportContainer6 = document.querySelector('.report-container6');
-    const reportContainer7 = document.querySelector('.report-container7');
-    const reportContainer8 = document.querySelector('.report-container8');
+    //const reportContainer6 = document.querySelector('.report-container6');
+   // const reportContainer7 = document.querySelector('.report-container7');
+   // const reportContainer8 = document.querySelector('.report-container8');
     const reportContainer9 = document.querySelector('.report-container9');
 
     var h3Element1 = dashboardNavItem.querySelector('h3');
-    var h3Element2 = academicperformanceNavItem.querySelector('h3');
+    var h3Element2 = guestlecturespeakerNavItem.querySelector('h3');
     var h3Element3 = projectsanctionedNavItem.querySelector('h3');
     var h3Element4 = journalsNavItem.querySelector('h3');
     var h3Element5 = bookspublishedNavItem.querySelector('h3');
     var h3Element6 = conferencesNavItem.querySelector('h3');
-    var h3Element7 = workshopsorganisedNavItem.querySelector('h3');
-    var h3Element8 = foreignvisitsNavItem.querySelector('h3');
-    var h3Element9 = otherachievementsNavItem.querySelector('h3');
+  //  var h3Element7 = workshopsorganisedNavItem.querySelector('h3');
+   // var h3Element8 = foreignvisitsNavItem.querySelector('h3');
+    //var h3Element9 = otherachievementsNavItem.querySelector('h3');
     var h3Element10 = patentsNavItem.querySelector('h3');
 
     // Function to hide all report containers
@@ -44,19 +44,19 @@ document.addEventListener('DOMContentLoaded', function () {
         reportContainer3.style.display = 'none';
         reportContainer4.style.display = 'none';
         reportContainer5.style.display = 'none';
-        reportContainer6.style.display = 'none';
-        reportContainer7.style.display = 'none';
-        reportContainer8.style.display = 'none';
+     //   reportContainer6.style.display = 'none';
+      //  reportContainer7.style.display = 'none';
+      //  reportContainer8.style.display = 'none';
         reportContainer9.style.display = 'none';
         dashboardNavItem.style.borderLeft = 'none';
-        academicperformanceNavItem.style.borderLeft = 'none';
+        guestlecturespeakerNavItem.style.borderLeft = 'none';
         projectsanctionedNavItem.style.borderLeft = 'none';
         journalsNavItem.style.borderLeft = 'none';
         bookspublishedNavItem.style.borderLeft = 'none';
         conferencesNavItem.style.borderLeft = 'none';
-        workshopsorganisedNavItem.style.borderLeft = 'none';
-        foreignvisitsNavItem.style.borderLeft = 'none';
-        otherachievementsNavItem.style.borderLeft = 'none';
+     //   workshopsorganisedNavItem.style.borderLeft = 'none';
+      //  foreignvisitsNavItem.style.borderLeft = 'none';
+       // otherachievementsNavItem.style.borderLeft = 'none';
         patentsNavItem.style.borderLeft = 'none';
         h3Element1.style.color = 'rgb(95, 95, 95)';
         h3Element2.style.color = 'rgb(95, 95, 95)';
@@ -64,18 +64,18 @@ document.addEventListener('DOMContentLoaded', function () {
         h3Element4.style.color = 'rgb(95, 95, 95)';
         h3Element5.style.color = 'rgb(95, 95, 95)';
         h3Element6.style.color = 'rgb(95, 95, 95)';
-        h3Element7.style.color = 'rgb(95, 95, 95)';
-        h3Element8.style.color = 'rgb(95, 95, 95)';
-        h3Element9.style.color = 'rgb(95, 95, 95)';
+     //   h3Element7.style.color = 'rgb(95, 95, 95)';
+      //  h3Element8.style.color = 'rgb(95, 95, 95)';
+       // h3Element9.style.color = 'rgb(95, 95, 95)';
         h3Element10.style.color = 'rgb(95, 95, 95)';
         closeForm1();
         closeForm2();
         closeForm3();
         closeForm4();
         closeForm5();
-        closeForm6();
-        closeForm7();
-        closeForm8();
+      //  closeForm6();
+       // closeForm7();
+     //   closeForm8();
         closeForm9();
         closeFormEdit();
     }
@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function () {
         reportContainer5.style.display = 'block';
         h3Element6.style.color = 'black';
     });
-
+/*
     // Add click event listeners to each navigation item
     workshopsorganisedNavItem.addEventListener('click', function () {
         // Hide all report containers
@@ -172,6 +172,8 @@ document.addEventListener('DOMContentLoaded', function () {
         reportContainer8.style.display = 'block';
         h3Element9.style.color = 'black';
     });
+
+    */
 
     patentsNavItem.addEventListener('click', function () {
         // Hide all report containers
@@ -234,6 +236,7 @@ function closeForm5() {
     document.getElementById("myForm_e").style.display = "none";
     blur.style.display = "none";
 }
+/*
 function openForm6() {
     document.getElementById("myForm_f").style.display = "block";
     blur.style.display = "block";
@@ -262,6 +265,8 @@ function closeForm8() {
     document.getElementById("myForm_h").style.display = "none";
     blur.style.display = "none";
 }
+
+*/
 
 function openForm9() {
     document.getElementById("myForm_i").style.display = "block";
